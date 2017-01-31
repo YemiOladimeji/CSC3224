@@ -1,0 +1,6 @@
+﻿  main.cpp
+e:\downloads\softwarerasteriser 2016\softwarerasteriser\softwarerasteriser\mesh.h(55): warning C4018: '<': signed/unsigned mismatch
+e:\downloads\softwarerasteriser 2016\softwarerasteriser\softwarerasteriser\softwarerasteriser.h(114): warning C4018: '>=': signed/unsigned mismatch
+e:\downloads\softwarerasteriser 2016\softwarerasteriser\softwarerasteriser\softwarerasteriser.h(117): warning C4018: '>=': signed/unsigned mismatch
+  SoftwareRasteriser.vcxproj -> E:\Downloads\SoftwareRasteriser 2016\SoftwareRasteriser\Debug\SoftwareRasteriser.exe
+  SoftwareRasteriser.vcxproj -> E:\Downloads\SoftwareRasteriser 2016\SoftwareRasteriser\Debug\SoftwareRasteriser.pdb (Full PDB)
