@@ -18,3 +18,8 @@ Entity::Entity(const Entity & e){ //Copy constructor
 Entity Entity::operator=(const Entity & e){ //Assignment operator
 	return Entity();
 }
+
+float Entity::getAggroRange()
+{
+	return aggroRange;
+}
