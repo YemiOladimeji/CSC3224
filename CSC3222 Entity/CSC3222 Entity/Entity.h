@@ -1,4 +1,6 @@
 #pragma once
+#ifndef ENTITY_H
+#define ENTITY_H
 #include <iostream>
 
 using namespace std;
@@ -6,7 +8,7 @@ using namespace std;
 class Entity {
 
 private:
-	struct Position {
+	struct Vector3 {
 		float x;
 		float y;
 		float z;
@@ -16,16 +18,18 @@ private:
 	int entitiesInRange;
 
 public:
-	Entity(Position pos, float aR) { //Default constructor
-		
-	}
+	Entity(Vector3 pos, float aR); //Default constructor
+	~Entity() {}; //Destructor
+	Entity(Entity &e); //Copy constructor
+	Entity operator= (Entity &e); //Assignment operator
 
 	//Get functions
 	float getAggroRange();
 	int getEntitiesInRange();
 
 	//Update functions
-	void updatePosition(Position position);
+	void updatePosition(Vector3 position);
 	void updateAggroRange();
 	void updateEntitiesInRange(int entitiesInRange);
 };
+#endif
