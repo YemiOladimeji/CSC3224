@@ -1,21 +1,33 @@
+#include <SFML/Audio.hpp>
+#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
 int main() {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	sf::Music music;
+	sf::RenderWindow window(sf::VideoMode(400, 400), "Best Girl Simulator 2017");
+	sf::Event event;
+	sf::Texture texture;
+	sf::Sprite sprite;
 
-	while (window.isOpen()) {
-		sf::Event event;
+	while(window.isOpen()){ //Open window
 		while (window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed)
+			if (event.type == sf::Event::Closed) {
 				window.close();
+			}
+			if (!music.openFromFile("Music\\Rem Voice Remix - Re-Zero.flac"))  //Play music
+				return -1;
+			else {
+				music.play();
+			}
+			if (!texture.loadFromFile("Images\\dance.gif"))
+				return -1;
+			else {
+				sprite.setTexture(texture);
+			}
+			window.clear(sf::Color::Black);
+			window.draw(sprite);
+			window.display();
 		}
-
-		window.clear();
-		window.draw(shape);
-		window.display();
-
 	}
 	return 0;
 }
