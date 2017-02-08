@@ -23,6 +23,8 @@
     <ClInclude Include="\\campus\home\Home2014\b4030796\Downloads\CSC3221_PfG_Exercises (1)\CSC3221 PfG Exercises\Vector3D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SUVAT.cpp" />
     <ClCompile Include="\\campus\home\Home2014\b4030796\Downloads\CSC3221_PfG_Exercises (1)\CSC3221 PfG Exercises\Vector3D.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

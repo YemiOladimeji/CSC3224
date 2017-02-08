@@ -19,7 +19,9 @@ public:
 	SUVAT(const SUVAT &s); //Copy constructor
 	const SUVAT	operator= (const SUVAT &s); //Assignment operator
 
-	inline void setTime();
+	inline void setTime(float t);
 	inline float getTime();
+
+	Vector3D calculate(Vector3D u, Vector3D a, float t);
 };
 #endif //SUVAT_H

@@ -75,5 +75,5 @@ public:
 	float vectorDistance(const Vector3D &v);
 };
 
-ostream &operator<< (ostream &outStream, Vector3D &v);
+//ostream &operator<< (ostream &outStream, Vector3D &v);
 #endif // VECTOR3D_H

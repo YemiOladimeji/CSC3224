@@ -26,5 +26,11 @@
     <ClCompile Include="\\campus\home\Home2014\b4030796\Downloads\CSC3221_PfG_Exercises (1)\CSC3221 PfG Exercises\Vector3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SUVAT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
