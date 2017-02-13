@@ -2,6 +2,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 #include <iostream>
+#include "Vector3D.h"
 
 using namespace std;
 

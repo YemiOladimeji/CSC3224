@@ -15,18 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Entity.h">
+    <ClInclude Include="\\campus\home\Home2014\b4030796\Downloads\CSC3221_PfG_Exercises (1)\CSC3221 PfG Exercises\Vector3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="\\campus\home\Home2014\b4030796\Downloads\CSC3221_PfG_Exercises (1)\CSC3221 PfG Exercises\Vector3D.h">
+    <ClInclude Include="SUVAT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Entity.cpp">
+    <ClCompile Include="\\campus\home\Home2014\b4030796\Downloads\CSC3221_PfG_Exercises (1)\CSC3221 PfG Exercises\Vector3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="\\campus\home\Home2014\b4030796\Downloads\CSC3221_PfG_Exercises (1)\CSC3221 PfG Exercises\Vector3D.cpp">
+    <ClCompile Include="SUVAT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
