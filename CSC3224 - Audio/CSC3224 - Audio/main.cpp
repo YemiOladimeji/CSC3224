@@ -6,8 +6,6 @@ int main() {
 	sf::Music music;
 	sf::RenderWindow window(sf::VideoMode(400, 400), "Best Girl Simulator 2017");
 	sf::Event event;
-	sf::Texture texture;
-	sf::Sprite sprite;
 
 	while(window.isOpen()){ //Open window
 		while (window.pollEvent(event)) {
@@ -19,15 +17,9 @@ int main() {
 			else {
 				music.play();
 			}
-			if (!texture.loadFromFile("Images\\dance.gif"))
-				return -1;
-			else {
-				sprite.setTexture(texture);
-			}
-			window.clear(sf::Color::Black);
-			window.draw(sprite);
-			window.display();
 		}
+		window.clear(sf::Color::Black);
+		window.display();
 	}
 	return 0;
 }
