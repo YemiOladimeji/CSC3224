@@ -19,13 +19,13 @@ int main() {
 			else {
 				music.play();
 			}
-			if (!texture.loadFromFile("Images\\dance.gif"))
-				return -1;
+			/*if (!texture.loadFromFile("Images\\dance.gif"))
+				return 8;
 			else {
 				sprite.setTexture(texture);
-			}
+			}*/
 			window.clear(sf::Color::Black);
-			window.draw(sprite);
+			//window.draw(sprite);
 			window.display();
 		}
 	}
