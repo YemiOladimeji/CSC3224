@@ -7,18 +7,16 @@ int main() {
 	sf::RenderWindow window(sf::VideoMode(400, 400), "Best Girl Simulator 2017");
 	sf::Event event;
 
+	music.openFromFile("Music\\Rem Voice Remix - Re-Zero.flac"); //Load in music file to play as BGM
+	music.play(); //Play music
+
 	while(window.isOpen()){ //Open window
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
-			if (!music.openFromFile("Music\\Rem Voice Remix - Re-Zero.flac"))  //Play music
-				return -1;
-			else {
-				music.play();
-			}
 		}
-		window.clear(sf::Color::Black);
+		window.clear(sf::Color::White);
 		window.display();
 	}
 	return 0;
