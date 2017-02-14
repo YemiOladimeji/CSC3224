@@ -1,21 +1,16 @@
-#include <SFML/Audio.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "AudioControl.h"
 
 using namespace std;
 
 int main() {
-	sf::Music music;
 	sf::RenderWindow window(sf::VideoMode(400, 400), "Best Girl Simulator 2017");
 	sf::Event event;
+	AudioControl aC;
 
-	if (!music.openFromFile("Music\\Rem Voice Remix - Re-Zero.flac")) {
-		cout << "Music file could not be located.";
-	}
-	else {
-		music.play();
-	}
+	aC.loadBGM("Music\\Rem Voice Remix - Re-Zero.flac");
 
 	while(window.isOpen()){ //Open window
 		while (window.pollEvent(event)) {
