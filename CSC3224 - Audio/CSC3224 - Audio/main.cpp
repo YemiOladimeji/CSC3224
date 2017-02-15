@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-	sf::RenderWindow window(sf::VideoMode(400, 440), "Best Girl Simulator 2017");
+	sf::RenderWindow window(sf::VideoMode(600, 600), "Best Girl Simulator 2017");
 	sf::Event event;
 	AudioControl aC;
 	//GraphicsControl gC;
@@ -16,9 +16,12 @@ int main() {
 
 	//Temp image loading solution
 	sf::Texture img;
-	if (!img.loadFromFile("Images\\Rem.png")) return 0;
+	if (!img.loadFromFile("Images\\PetitRemIII.png")) return 0;
 	sf::Sprite sprite;
 	sprite.setTexture(img);
+	sprite.setOrigin(50,50);
+
+	
 
 	while(window.isOpen()){ //Open window
 		while (window.pollEvent(event)) {
