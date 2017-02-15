@@ -15,6 +15,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CSC3224  - Audio", "CSC3224
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CSC3224 - Initialise and Shutdown", "CSC3224 - Initialise and Shutdown\CSC3224 - Initialise and Shutdown.vcxproj", "{7DD13443-F940-4D06-9651-13F9529A06C3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CSC3224 - Profiling", "CSC3224 - Profiling\CSC3224 - Profiling.vcxproj", "{08A89F83-084E-4A16-BDFC-AAEDAD61AA64}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CSC3224 - Input and Output", "CSC3224 - Input and Output\CSC3224 - Input and Output.vcxproj", "{1DA3CBD7-47CB-4CCB-A5BE-51EC69AB9E58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -71,6 +75,22 @@ Global
 		{7DD13443-F940-4D06-9651-13F9529A06C3}.Release|x64.Build.0 = Release|x64
 		{7DD13443-F940-4D06-9651-13F9529A06C3}.Release|x86.ActiveCfg = Release|Win32
 		{7DD13443-F940-4D06-9651-13F9529A06C3}.Release|x86.Build.0 = Release|Win32
+		{08A89F83-084E-4A16-BDFC-AAEDAD61AA64}.Debug|x64.ActiveCfg = Debug|x64
+		{08A89F83-084E-4A16-BDFC-AAEDAD61AA64}.Debug|x64.Build.0 = Debug|x64
+		{08A89F83-084E-4A16-BDFC-AAEDAD61AA64}.Debug|x86.ActiveCfg = Debug|Win32
+		{08A89F83-084E-4A16-BDFC-AAEDAD61AA64}.Debug|x86.Build.0 = Debug|Win32
+		{08A89F83-084E-4A16-BDFC-AAEDAD61AA64}.Release|x64.ActiveCfg = Release|x64
+		{08A89F83-084E-4A16-BDFC-AAEDAD61AA64}.Release|x64.Build.0 = Release|x64
+		{08A89F83-084E-4A16-BDFC-AAEDAD61AA64}.Release|x86.ActiveCfg = Release|Win32
+		{08A89F83-084E-4A16-BDFC-AAEDAD61AA64}.Release|x86.Build.0 = Release|Win32
+		{1DA3CBD7-47CB-4CCB-A5BE-51EC69AB9E58}.Debug|x64.ActiveCfg = Debug|x64
+		{1DA3CBD7-47CB-4CCB-A5BE-51EC69AB9E58}.Debug|x64.Build.0 = Debug|x64
+		{1DA3CBD7-47CB-4CCB-A5BE-51EC69AB9E58}.Debug|x86.ActiveCfg = Debug|Win32
+		{1DA3CBD7-47CB-4CCB-A5BE-51EC69AB9E58}.Debug|x86.Build.0 = Debug|Win32
+		{1DA3CBD7-47CB-4CCB-A5BE-51EC69AB9E58}.Release|x64.ActiveCfg = Release|x64
+		{1DA3CBD7-47CB-4CCB-A5BE-51EC69AB9E58}.Release|x64.Build.0 = Release|x64
+		{1DA3CBD7-47CB-4CCB-A5BE-51EC69AB9E58}.Release|x86.ActiveCfg = Release|Win32
+		{1DA3CBD7-47CB-4CCB-A5BE-51EC69AB9E58}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
