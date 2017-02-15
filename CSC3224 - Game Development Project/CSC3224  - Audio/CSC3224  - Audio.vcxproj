@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7DD13443-F940-4D06-9651-13F9529A06C3}</ProjectGuid>
-    <RootNamespace>CSC3224InitialiseandShutdown</RootNamespace>
+    <ProjectGuid>{90CFECB7-D17F-462A-A0A5-09C7CA5A732F}</ProjectGuid>
+    <RootNamespace>CSC3224Audio</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
