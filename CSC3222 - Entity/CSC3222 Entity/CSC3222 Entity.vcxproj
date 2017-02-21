@@ -119,11 +119,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="\\campus\home\Home2014\b4030796\Downloads\CSC3221_PfG_Exercises (1)\CSC3221 PfG Exercises\Vector3D.h" />
+    <ClInclude Include="Vector3D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="\\campus\home\Home2014\b4030796\Downloads\CSC3221_PfG_Exercises (1)\CSC3221 PfG Exercises\Vector3D.cpp" />
+    <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

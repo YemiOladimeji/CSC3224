@@ -1,9 +1,9 @@
-//Author: Yemi Oladimeji
+#pragma once
 #ifndef VECTOR3D_H
 #define VECTOR3D_H
 using namespace std;
 
-class Vector3D{
+class Vector3D {
 private:
 	//Declaration of the x,y,z components
 	float x, y, z;
@@ -42,7 +42,7 @@ public:
 	}
 
 	//Copy constructor
-	Vector3D (const Vector3D &v);
+	Vector3D(const Vector3D &v);
 
 	//Assignment operator
 	const Vector3D operator= (const Vector3D &v);
