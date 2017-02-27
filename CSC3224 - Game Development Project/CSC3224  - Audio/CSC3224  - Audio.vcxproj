@@ -84,7 +84,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\b4030796\Source\Repos\CSC3224-and-CSC3222\CSC3224 - Game Development Project\SFML-2.4.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\b4030796\Source\Repos\CSC3224-and-CSC3222\CSC3224 - Game Development Project\SFML-2.4.1\include;C:\Users\b4030796\Source\Repos\CSC3224-and-CSC3222\CSC3224 - Game Development Project\CSC3224  - Audio</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -114,7 +114,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\b4030796\Source\Repos\CSC3224-and-CSC3222\CSC3224 - Game Development Project\SFML-2.4.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\b4030796\Source\Repos\CSC3224-and-CSC3222\CSC3224 - Game Development Project\SFML-2.4.1\include;C:\Users\b4030796\Source\Repos\CSC3224-and-CSC3222\CSC3224 - Game Development Project\CSC3224  - Audio</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
