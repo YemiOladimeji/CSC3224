@@ -70,9 +70,6 @@ public:
 
 	//Create a unit vector
 	Vector3D normaliseVector3D();
-
-	//Find the distance between two vectors (calculate the difference between two vectors and then find the magnitude of that vector)
-	float vectorDistance(const Vector3D &v);
 };
 
 ostream &operator<< (ostream &outStream, Vector3D &v);

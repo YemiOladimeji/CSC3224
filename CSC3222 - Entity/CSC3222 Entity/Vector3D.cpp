@@ -81,12 +81,6 @@ Vector3D Vector3D::normaliseVector3D() {
 	return Vector3D(x, y, z);
 }
 
-float Vector3D::vectorDistance(const Vector3D & v)
-{
-	Vector3D t = Vector3D(x - v.getX(), y - v.getY(), z - v.getZ());
-	return t.getMagnitudeSquared();
-}
-
 ostream &operator<<(ostream &outStream, const Vector3D &v)
 {
 	outStream << "(" << v.getX() << "," << v.getY() << "," << v.getZ() << ")";
