@@ -22,10 +22,11 @@ public:
 	//Get functions
 	float getAggroRange();
 	int getEntitiesInRange();
+	float getDistanceBetween();
 
 	//Update functions
 	void updatePosition(Vector3D position);
-	void updateAggroRange(float x);
+	void updateAggroRange();
 	void updateEntitiesInRange(int entitiesInRange);
 };
 ostream &operator<< (ostream &outStream, Entity &e); //Output operator
