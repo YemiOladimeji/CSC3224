@@ -77,6 +77,7 @@ ipch/
 *.opensdf
 *.sdf
 *.cachefile
+CSC3224 - Game Development Project.VC.VC.opendb
 
 # Visual Studio profiler
 *.psess
