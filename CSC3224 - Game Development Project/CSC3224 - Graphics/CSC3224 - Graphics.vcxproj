@@ -85,7 +85,6 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Users\b4030796\Source\Repos\CSC3224-and-CSC3222\CSC3224 - Game Development Project\SFML-2.4.1\include;C:\Users\b4030796\Source\Repos\CSC3224-and-CSC3222\CSC3224 - Game Development Project\CSC3224 - Graphics</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SFML_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

@@ -1,11 +1,13 @@
 #include <SFML/Window.hpp>
 #include <iostream>
+#include <AudioControl.h>
 
 using namespace std;
 
 int main() {
 	sf::Window window(sf::VideoMode(600, 600), "Best Girl Simulator 2017");
 	sf::Event event;
+	AudioControl aC;
 
 	while (window.isOpen()) { //Open window
 		while (window.pollEvent(event)) {
@@ -13,6 +15,7 @@ int main() {
 				window.close();
 			}
 		}
+		aC.loadBGM("Music\\Rem Voice Remix - Re-Zero.flac");
 	}
 	return 0; 
 }

@@ -84,7 +84,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SFML_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\Yemi\Source\Repos\CSC3224-and-CSC3222\CSC3224 - Game Development Project\VS2015 Box2D</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
