@@ -56,12 +56,14 @@ void Entity::updateAggroRange(float x)
 void Entity::updateEntitiesInRange(vector<Entity> v)//vector of entities here
 {
 	for (int x = 0; x < v.size; x++) { //loop through vector of entities
-		if (v[x] != this) {
-
+		if (v[x] == *this) { //check current position against other entities in the list/array (if entity =  this)
+			entitiesInRange--;
 		}
-	}
-											//check current position against other entities in the list/array (if entity =  this)
-		                                    //get distance between this entity and the current entity in the list
-		                                    //if distance between this entity and that entity is less than the aggro range of the entity the function is being called on
-											//update entities in range		
+		else {
+			float dist = position.vectorDistance(v[x].position); //get distance between this entity and the current entity in the list
+			if (dist < aggroRange) {  //if distance between this entity and that entity is less than the aggro range of the entity the function is being called on
+				entitiesInRange++; //update entities in range	
+			}
+		}
+	}											
 }
