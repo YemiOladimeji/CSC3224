@@ -72,6 +72,16 @@ Vector3D Vector3D::operator% (const Vector3D &v) const {
 		x*v.getY() - y*v.getX());
 }
 
+bool Vector3D::operator==(const Vector3D & v) const
+{
+	return (x == v.x && y == v.y && z == v.z);
+}
+
+bool Vector3D::operator!=(const Vector3D & v) const
+{
+	return !(x == v.x && y == v.y && z == v.z);
+}
+
 //Create a unit vector
 Vector3D Vector3D::normaliseVector3D() {
 	float mag = getMagnitudeSquared();
@@ -79,6 +89,13 @@ Vector3D Vector3D::normaliseVector3D() {
 	y /= mag;
 	z /= mag;
 	return Vector3D(x, y, z);
+}
+
+
+float Vector3D::vectorDistance(const Vector3D &v)
+{
+	Vector3D t = Vector3D(x - v.getX(), y - v.getY(), z - v.getZ());
+	return t.getMagnitudeSquared();
 }
 
 ostream &operator<<(ostream &outStream, const Vector3D &v)

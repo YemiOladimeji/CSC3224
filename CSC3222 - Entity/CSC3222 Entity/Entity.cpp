@@ -1,5 +1,7 @@
 #include <iostream>
+#include <vector>
 #include "Entity.h"
+
 using namespace std;
 
 Entity::Entity() { //Default constructor
@@ -17,6 +19,16 @@ Entity::Entity(const Entity & e){ //Copy constructor
 
 Entity Entity::operator=(const Entity & e){ //Assignment operator
 	return Entity();
+}
+
+bool Entity::operator==(const Entity & e)
+{
+	return (aggroRange == e.aggroRange && entitiesInRange == e.entitiesInRange && position == e.position);
+}
+
+bool Entity::operator!=(const Entity & e)
+{
+	return !(aggroRange == e.aggroRange && entitiesInRange == e.entitiesInRange && position == e.position);
 }
 
 float Entity::getAggroRange()
@@ -41,19 +53,15 @@ void Entity::updateAggroRange(float x)
 	aggroRange = x;
 }
 
-void Entity::updateEntitiesInRange(Vector3D vec)//array of entities here
+void Entity::updateEntitiesInRange(vector<Entity> v)//vector of entities here
 {
-	if (aggroRange < vectorDistance(vec)) { //loop through array
+	for (int x = 0; x < v.size; x++) { //loop through vector of entities
+		if (v[x] != this) {
+
+		}
+	}
 											//check current position against other entities in the list/array (if entity =  this)
 		                                    //get distance between this entity and the current entity in the list
 		                                    //if distance between this entity and that entity is less than the aggro range of the entity the function is being called on
-		                                    //update entities in range
-		entitiesInRange++;
-	}
-}
-
-float Entity::vectorDistance(const Vector3D &v)
-{
-	Vector3D t = Vector3D(position.getX() - v.getX(), position.getY() - v.getY(), position.getZ() - v.getZ());
-	return t.getMagnitudeSquared();
+											//update entities in range		
 }

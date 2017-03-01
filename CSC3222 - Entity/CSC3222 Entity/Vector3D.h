@@ -67,9 +67,17 @@ public:
 
 	//Calculate the vector product
 	Vector3D operator% (const Vector3D &v) const;
+	
+	//Compare to see if two Vectors are equal to one another
+	bool operator== (const Vector3D &v) const;
+
+	//Compare to see if two Vectors are not equal to one another
+	bool operator!= (const Vector3D &v) const;
 
 	//Create a unit vector
 	Vector3D normaliseVector3D();
+
+	float vectorDistance(const Vector3D &v); //Find the distance between two vectors (calculate the difference between two vectors and then find the magnitude of that vector)
 };
 
 ostream &operator<< (ostream &outStream, Vector3D &v);

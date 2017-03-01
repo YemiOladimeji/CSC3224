@@ -2,6 +2,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 #include <iostream>
+#include <vector>
 #include "Vector3D.h"
 
 using namespace std;
@@ -19,6 +20,8 @@ public:
 	~Entity() {}; //Destructor
 	Entity(const Entity &e); //Copy constructor
 	Entity operator= (const Entity &e); //Assignment operator
+	bool operator== (const Entity &e);
+	bool operator!= (const Entity &e);
 				
 	
 	//Get functions
@@ -28,8 +31,7 @@ public:
 	//Update functions
 	void updatePosition(Vector3D position);
 	void updateAggroRange(float x);
-	void updateEntitiesInRange(Vector3D vec);
-	float vectorDistance(const Vector3D &v); //Find the distance between two vectors (calculate the difference between two vectors and then find the magnitude of that vector)
+	void updateEntitiesInRange(vector<Entity> v);
 };
 ostream &operator<< (ostream &outStream, Entity &e); //Output operator
 #endif
