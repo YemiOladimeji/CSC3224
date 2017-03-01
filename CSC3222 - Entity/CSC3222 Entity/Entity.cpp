@@ -41,6 +41,11 @@ int Entity::getEntitiesInRange()
 	return entitiesInRange;
 }
 
+Vector3D Entity::getPosition()
+{
+	return Vector3D(position.getX(), position.getY(), position.getZ());
+}
+
 void Entity::updatePosition(Vector3D pos)
 {
 	position.setX(pos.getX());
@@ -55,7 +60,7 @@ void Entity::updateAggroRange(float x)
 
 void Entity::updateEntitiesInRange(vector<Entity> v)//vector of entities here
 {
-	for (int x = 0; x < v.size; x++) { //loop through vector of entities
+	for (std::vector<Entity>::size_type x = 0; x != v.size(); x++) { //loop through vector of entities
 		if (v[x] == *this) { //check current position against other entities in the list/array (if entity =  this)
 			entitiesInRange--;
 		}

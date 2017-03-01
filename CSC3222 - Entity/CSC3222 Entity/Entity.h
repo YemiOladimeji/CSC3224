@@ -27,11 +27,11 @@ public:
 	//Get functions
 	float getAggroRange();
 	int getEntitiesInRange();
+	Vector3D getPosition();
 
 	//Update functions
 	void updatePosition(Vector3D position);
 	void updateAggroRange(float x);
 	void updateEntitiesInRange(vector<Entity> v);
 };
-ostream &operator<< (ostream &outStream, Entity &e); //Output operator
 #endif
