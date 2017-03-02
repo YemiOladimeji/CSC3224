@@ -28,6 +28,9 @@ public:
 	float getAggroRange();
 	int getEntitiesInRange();
 	Vector3D getPosition();
+	float getEntityX();
+	float getEntityY();
+	float getEntityZ();
 
 	//Update functions
 	void updatePosition(Vector3D position);
