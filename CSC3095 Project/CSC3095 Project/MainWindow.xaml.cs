@@ -23,11 +23,17 @@ namespace CSC3095_Project
     /// </summary>
     public partial class MainWindow : Window
     {
-        private KinectSensor kinect;
+        private KinectSensor kinect = null;
         private MultiSourceFrameReader reader;
         private Gesture waveGesture;
         private VisualGestureBuilderFrameSource gestureSource;
         private VisualGestureBuilderFrameReader gestureReader;
+
+        //Variables for reading in body data
+       // private BodyFrameReader bodyFrameReader = null;
+        private Body[] bodies = null;
+        private int bodyIndex;
+        private bool bodyTracked = false;
 
         public MainWindow()
         {
@@ -40,25 +46,25 @@ namespace CSC3095_Project
 
         void initialiseKinect()
         {
-            kinect = KinectSensor.GetDefault();
-            //cM = kinect.CoordinateMapper;
+            this.kinect = KinectSensor.GetDefault();
 
-            if (kinect != null)
+            if (this.kinect != null)
             {
-                kinect.Open();
+                this.kinect.Open();
             }
+        }
+
+        void openReaders()
+        {
+            this.reader = this.kinect.OpenMultiSourceFrameReader(FrameSourceTypes.Color | FrameSourceTypes.Body);
+            this.reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
+            //this.bodyFrameReader = this.kinect.BodyFrameSource.OpenReader();
         }
 
         void loadGesture()
         {
             VisualGestureBuilderDatabase db = new VisualGestureBuilderDatabase(@"W4ve.gbd");
             this.waveGesture = db.AvailableGestures.Where(g => g.Name == "W4ve").Single();
-        }
-
-        void openReaders()
-        {
-            reader = kinect.OpenMultiSourceFrameReader(FrameSourceTypes.Color);
-            reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
         }
 
         void openGestureReader()
@@ -112,6 +118,7 @@ namespace CSC3095_Project
 
         void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
+            bool dataReceived = false;
             var reference = e.FrameReference.AcquireFrame();
 
             //Colour stream
@@ -120,6 +127,54 @@ namespace CSC3095_Project
                 if (frame != null)
                 {
                     Camera.Source = ToBitmap(frame);
+                }
+            }
+
+            //Body stream
+            using (var frame = reference.BodyFrameReference.AcquireFrame())
+            {
+                if (frame != null)
+                {
+                    if (this.bodies == null)
+                    {
+                        this.bodies = new Body[frame.BodyCount];
+                    }
+                    frame.GetAndRefreshBodyData(this.bodies);
+                    dataReceived = true;
+                }
+            }
+
+            if (dataReceived)
+            {
+                Body body = null;
+                if (this.bodyTracked)
+                {
+                    if (this.bodies[this.bodyIndex].IsTracked)
+                    {
+                        body = this.bodies[this.bodyIndex];
+                    } else
+                    {
+                        bodyTracked = false;
+                    }
+                }
+                if (!bodyTracked)
+                {
+                    for (int i = 0; i < bodies.Length; ++i)
+                    {
+                        if (this.bodies[i].IsTracked)
+                        {
+                            this.bodyIndex = i;
+                            this.bodyTracked = true;
+                            break;
+                        }
+                    }
+                }
+                if (body != null && this.bodyTracked && body.IsTracked)
+                {
+                    this.detectBlock.Text = "I have noticed you!";
+                } else
+                {
+                    this.detectBlock.Text = "I can't see you...";
                 }
             }
         }
