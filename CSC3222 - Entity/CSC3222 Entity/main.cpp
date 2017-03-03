@@ -11,28 +11,19 @@ int main() {
 
 	vector<Entity> entities;
 	int entNo, ab;
-	srand(time(NULL));
 
+	//randomly generate positions for entities
+	//assign those positions to the entities <- vector data may possibly be getting lost, due to no proper "setPosition" function, needs checking
+	//push those entities onto the vector <- using two for loops may have meant that the elements in the vector only existed in the scope of that loop and not globally
+	//use previously written functions
 
 	cout << "Enter the number of entities you would like to generate: ";
 	cin >> entNo;
 
-	for (int i = 0; i < entNo; i++) {
-		float x = rand() % 10 + 1;
-		float y = rand() % 10 + 1;
-		float z = rand() % 10 + 1;
-		float agg = rand() % 10 + 1;
-
-		Vector3D pos(x, y, z);
-		Entity e(pos, agg);
-
-		entities.push_back(e);
-	}
-
 	for (std::vector<Entity>::size_type j = 0; j != entities.size(); j++) {
+
+		cout << "\nEntity " << j << ": " << "<" << entities[j].getEntityX() << ", " << entities[j].getEntityY() << ", " << entities[j].getEntityZ() << ">";
 		cout << "\nCurrent entities in range for entity " << j << ": " << entities[j].getEntitiesInRange();
-		entities[j].updateEntitiesInRange(entities);
-		cout << "\nUpdated entities in range for entity " << j << ": " << entities[j].getEntitiesInRange();
 	}
 	cin >> ab;
 	return 0;

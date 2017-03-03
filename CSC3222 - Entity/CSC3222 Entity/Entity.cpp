@@ -46,6 +46,21 @@ Vector3D Entity::getPosition()
 	return Vector3D(position.getX(), position.getY(), position.getZ());
 }
 
+float Entity::getEntityX()
+{
+	return position.getX();
+}
+
+float Entity::getEntityY()
+{
+	return position.getY();
+}
+
+float Entity::getEntityZ()
+{
+	return position.getZ();
+}
+
 void Entity::updatePosition(Vector3D pos)
 {
 	position.setX(pos.getX());
