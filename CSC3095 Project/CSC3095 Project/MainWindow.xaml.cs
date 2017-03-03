@@ -30,7 +30,6 @@ namespace CSC3095_Project
         private VisualGestureBuilderFrameReader gestureReader;
 
         //Variables for reading in body data
-       // private BodyFrameReader bodyFrameReader = null;
         private Body[] bodies = null;
         private int bodyIndex;
         private bool bodyTracked = false;
@@ -58,7 +57,6 @@ namespace CSC3095_Project
         {
             this.reader = this.kinect.OpenMultiSourceFrameReader(FrameSourceTypes.Color | FrameSourceTypes.Body);
             this.reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
-            //this.bodyFrameReader = this.kinect.BodyFrameSource.OpenReader();
         }
 
         void loadGesture()
