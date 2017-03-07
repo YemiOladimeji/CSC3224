@@ -14,6 +14,8 @@ private:
 	sf::Sound sound; //Object for holding non-BGM audio data
 
 public:
+	Audio(); //Default constructor
+	~Audio() {}; //Destructor
 	int loadBGM(string filepath); //Function to load and play background music
 	int loadSound(string filepath); //Function to load audio data into a buffer
 };

@@ -1,6 +1,10 @@
 #include "SFML\Audio.hpp"
 #include "Audio.h"
 
+Audio::Audio() { //Default constructor
+
+}
+
 int Audio::loadBGM(string filepath)
 {
 	if (!music.openFromFile(filepath)) {
