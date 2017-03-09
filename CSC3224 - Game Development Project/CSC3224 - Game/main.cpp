@@ -16,8 +16,11 @@ int main() {
 						break;
 					}
 					else if (event.key.code == sf::Keyboard::P) {
-						audio.loadBGM("..//CSC3224 - Audio/Audio Files/Rem Voice Remix - Re-Zero.flac");
+						audio.loadBGM("Audio Files\\Rem Voice Remix - Re-Zero.flac");
+						break;
 					}
+				case sf::Event::Closed:
+					renderWindow.close();
 			}
 
 			clock.restart();

@@ -12,6 +12,7 @@ int Audio::loadBGM(string filepath)
 	}
 	else {
 		music.play();
+		return 0;
 	}
 }
 
@@ -24,4 +25,5 @@ int Audio::loadSound(string filepath)
 		sound.setBuffer(buffer);
 		sound.play();
 	}
+	return 0;
 }

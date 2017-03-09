@@ -22,9 +22,12 @@ namespace CSC3095_Project
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {   
+        //Variables for setting up the Kinect to recognise frame data from multiple sources
         private KinectSensor kinect = null;
         private MultiSourceFrameReader reader;
+        
+        //Variables for reading in gesture data
         private Gesture waveGesture;
         private VisualGestureBuilderFrameSource gestureSource;
         private VisualGestureBuilderFrameReader gestureReader;
@@ -135,7 +138,7 @@ namespace CSC3095_Project
                 {
                     if (this.bodies == null)
                     {
-                        this.bodies = new Body[frame.BodyCount];
+                        this.bodies = new Body[frame.BodyFrameSource.BodyCount];
                     }
                     frame.GetAndRefreshBodyData(this.bodies);
                     dataReceived = true;
@@ -145,14 +148,22 @@ namespace CSC3095_Project
             if (dataReceived)
             {
                 Body body = null;
+
                 if (this.bodyTracked)
                 {
                     if (this.bodies[this.bodyIndex].IsTracked)
                     {
                         body = this.bodies[this.bodyIndex];
+                        if (this.gestureReader.IsPaused)
+                        {
+                            this.gestureSource.TrackingId = body.TrackingId;
+                            this.gestureReader.IsPaused = false;
+                        }
+                        
                     } else
                     {
                         bodyTracked = false;
+                        this.OnTrackingIdLost(null, null);
                     }
                 }
                 if (!bodyTracked)
