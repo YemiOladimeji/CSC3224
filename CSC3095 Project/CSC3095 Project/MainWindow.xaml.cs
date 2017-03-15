@@ -1,5 +1,4 @@
 ﻿using Microsoft.Kinect;
-using Microsoft.Kinect.VisualGestureBuilder;
 using Microsoft.Kinect.Wpf.Controls;
 using System;
 using System.Collections.Generic;
@@ -25,25 +24,28 @@ namespace CSC3095_Project
     {   
         //Variables for setting up the Kinect to recognise frame data from multiple sources
         private KinectSensor kinect = null;
-        private MultiSourceFrameReader reader;
-        
-        //Variables for reading in gesture data
-        private Gesture waveGesture;
-        private VisualGestureBuilderFrameSource gestureSource;
-        private VisualGestureBuilderFrameReader gestureReader;
+        private MultiSourceFrameReader reader = null;
 
         //Variables for reading in body data
         private Body[] bodies = null;
-        private int bodyIndex;
+        private int bodyIndex = 0;
         private bool bodyTracked = false;
+
+        //Variables for gesture recognition
+        private GestureDetector gestureDetector = null;
+        private GestureResultView gestureResultView = null;
+
+        /*private Gesture waveGesture;
+        private VisualGestureBuilderFrameSource gestureSource;
+        private VisualGestureBuilderFrameReader gestureReader;*/
 
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             initialiseKinect();
             openReaders();
-            loadGesture();
-            openGestureReader();
+            //loadGesture();
+            //openGestureReader();
         }
 
         void initialiseKinect()
@@ -62,13 +64,13 @@ namespace CSC3095_Project
             this.reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
         }
 
-        void loadGesture()
+        /*void loadGesture()
         {
             VisualGestureBuilderDatabase db = new VisualGestureBuilderDatabase(@"W4ve.gbd");
             this.waveGesture = db.AvailableGestures.Where(g => g.Name == "W4ve").Single();
-        }
+        }*/
 
-        void openGestureReader()
+        /*void openGestureReader()
         {
             this.gestureSource = new VisualGestureBuilderFrameSource(this.kinect, 0);
             this.gestureSource.AddGesture(this.waveGesture);
@@ -77,9 +79,9 @@ namespace CSC3095_Project
             this.gestureReader = this.gestureSource.OpenReader();
             this.gestureReader.IsPaused = true;
             this.gestureReader.FrameArrived += OnGestureFrameArrived;
-        }
+        }*/
 
-        void OnCloseReaders(object sender, RoutedEventArgs e)
+        /*void OnCloseReaders(object sender, RoutedEventArgs e)
         {
             if (this.gestureReader != null)
             {
@@ -92,30 +94,45 @@ namespace CSC3095_Project
                 this.gestureSource.TrackingIdLost -= this.OnTrackingIdLost;
                 this.gestureSource.Dispose();
             }
-        }
+        }*/
 
-        void OnTrackingIdLost(object sender, TrackingIdLostEventArgs e)
+        /*void OnTrackingIdLost(object sender, TrackingIdLostEventArgs e)
         {
             this.gestureReader.IsPaused = true;
             this.detectBlock.Text = "There's no-one here...";
-        }
+        }*/
 
-        void OnGestureFrameArrived(object sender, VisualGestureBuilderFrameArrivedEventArgs e)
+        /*void OnGestureFrameArrived(object sender, VisualGestureBuilderFrameArrivedEventArgs e)
         {
             using (var frame = e.FrameReference.AcquireFrame())
             {
                 if (frame != null)
                 {
-                    var continuousResults = frame.ContinuousGestureResults;
-                    if ((continuousResults != null) && (continuousResults.ContainsKey(this.waveGesture)))
-                    {
-                        var result = continuousResults[this.waveGesture];
+                    var discreteResults = frame.DiscreteGestureResults;
+                    bool waving = false;
 
+                    foreach (var gesture in this.gestureSource.Gestures)
+                    {
+                        if (gesture.GestureType == GestureType.Discrete)
+                        {
+                            DiscreteGestureResult result = null;
+
+                            if (result != null)
+                            {
+                                if (gesture.Name.Equals(this.waveGesture.Name))
+                                {
+                                    waving = result.Detected;
+                                }
+                            }
+                        }
+                    }
+                    if (waving)
+                    {
                         this.detectBlock.Text = "You are waving!";
                     }
                 }
             }
-        }
+        }*/
 
         void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
@@ -153,17 +170,10 @@ namespace CSC3095_Project
                 {
                     if (this.bodies[this.bodyIndex].IsTracked)
                     {
-                        body = this.bodies[this.bodyIndex];
-                        if (this.gestureReader.IsPaused)
-                        {
-                            this.gestureSource.TrackingId = body.TrackingId;
-                            this.gestureReader.IsPaused = false;
-                        }
-                        
+                        body = this.bodies[this.bodyIndex];      
                     } else
                     {
                         bodyTracked = false;
-                        this.OnTrackingIdLost(null, null);
                     }
                 }
                 if (!bodyTracked)
