@@ -2,6 +2,8 @@
 using Microsoft.Kinect.Wpf.Controls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +22,12 @@ namespace CSC3095_Project
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged, IDisposable
     {   
         //Variables for setting up the Kinect to recognise frame data from multiple sources
         private KinectSensor kinect = null;
         private MultiSourceFrameReader reader = null;
+        private string text = null;
 
         //Variables for reading in body data
         private Body[] bodies = null;
@@ -34,18 +37,33 @@ namespace CSC3095_Project
         //Variables for gesture recognition
         private GestureDetector gestureDetector = null;
         private GestureResultView gestureResultView = null;
-
-        /*private Gesture waveGesture;
-        private VisualGestureBuilderFrameSource gestureSource;
-        private VisualGestureBuilderFrameReader gestureReader;*/
+        private List<GestureDetector> gestureDetectorList = null;
 
         public MainWindow()
         {
             this.InitializeComponent();
-            initialiseKinect();
-            openReaders();
-            //loadGesture();
-            //openGestureReader();
+            this.initialiseKinect();
+            this.openReaders();
+            
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string StatusText
+        {
+            get
+            {
+                return this.text;
+            }
+
+            private set
+            {
+                if (this.text != value)
+                {
+                    this.text = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
         }
 
         void initialiseKinect()
@@ -58,81 +76,20 @@ namespace CSC3095_Project
             }
         }
 
+        void setDetectorList()
+        {
+            this.gestureDetectorList = new List<GestureDetector>();
+            GestureResultView result = new GestureResultView(false, false, 0.0f);
+            GestureDetector detector = new GestureDetector(this.kinect, result);
+            result.PropertyChanged += GestureResult_PropertyChanged;
+            this.gestureDetectorList.Add(detector);
+        }
+
         void openReaders()
         {
             this.reader = this.kinect.OpenMultiSourceFrameReader(FrameSourceTypes.Color | FrameSourceTypes.Body);
             this.reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
         }
-
-        /*void loadGesture()
-        {
-            VisualGestureBuilderDatabase db = new VisualGestureBuilderDatabase(@"W4ve.gbd");
-            this.waveGesture = db.AvailableGestures.Where(g => g.Name == "W4ve").Single();
-        }*/
-
-        /*void openGestureReader()
-        {
-            this.gestureSource = new VisualGestureBuilderFrameSource(this.kinect, 0);
-            this.gestureSource.AddGesture(this.waveGesture);
-            this.gestureSource.TrackingIdLost += OnTrackingIdLost;
-
-            this.gestureReader = this.gestureSource.OpenReader();
-            this.gestureReader.IsPaused = true;
-            this.gestureReader.FrameArrived += OnGestureFrameArrived;
-        }*/
-
-        /*void OnCloseReaders(object sender, RoutedEventArgs e)
-        {
-            if (this.gestureReader != null)
-            {
-                this.gestureReader.FrameArrived -= this.OnGestureFrameArrived;
-                this.gestureReader.Dispose();
-                this.gestureReader = null; 
-            }
-            if (this.gestureSource != null)
-            {
-                this.gestureSource.TrackingIdLost -= this.OnTrackingIdLost;
-                this.gestureSource.Dispose();
-            }
-        }*/
-
-        /*void OnTrackingIdLost(object sender, TrackingIdLostEventArgs e)
-        {
-            this.gestureReader.IsPaused = true;
-            this.detectBlock.Text = "There's no-one here...";
-        }*/
-
-        /*void OnGestureFrameArrived(object sender, VisualGestureBuilderFrameArrivedEventArgs e)
-        {
-            using (var frame = e.FrameReference.AcquireFrame())
-            {
-                if (frame != null)
-                {
-                    var discreteResults = frame.DiscreteGestureResults;
-                    bool waving = false;
-
-                    foreach (var gesture in this.gestureSource.Gestures)
-                    {
-                        if (gesture.GestureType == GestureType.Discrete)
-                        {
-                            DiscreteGestureResult result = null;
-
-                            if (result != null)
-                            {
-                                if (gesture.Name.Equals(this.waveGesture.Name))
-                                {
-                                    waving = result.Detected;
-                                }
-                            }
-                        }
-                    }
-                    if (waving)
-                    {
-                        this.detectBlock.Text = "You are waving!";
-                    }
-                }
-            }
-        }*/
 
         void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
@@ -170,7 +127,7 @@ namespace CSC3095_Project
                 {
                     if (this.bodies[this.bodyIndex].IsTracked)
                     {
-                        body = this.bodies[this.bodyIndex];      
+                        body = this.bodies[this.bodyIndex];
                     } else
                     {
                         bodyTracked = false;
@@ -220,5 +177,34 @@ namespace CSC3095_Project
 
             return BitmapSource.Create(width, height, 96, 96, format, null, pixels, stride);
         }
+
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (this.gestureDetector != null)
+                {
+                    this.gestureDetector.Dispose();
+                    this.gestureDetector = null;
+                }
+            }
+        }
+
+        void GestureResult_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            
+        }
+
     }
 }
