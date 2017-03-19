@@ -7,6 +7,8 @@ int main() {
 	sf::Clock clock;
 	Audio audio;
 
+	audio.loadBGM("Audio Files/MovementProposition.wav");
+
 	while (renderWindow.isOpen()){
 		while (renderWindow.pollEvent(event)) {
 			switch (event.type) {
@@ -15,14 +17,9 @@ int main() {
 						renderWindow.close();
 						break;
 					}
-					else if (event.key.code == sf::Keyboard::P) {
-						audio.loadBGM("Audio Files\\Rem Voice Remix - Re-Zero.flac");
-						break;
-					}
 				case sf::Event::Closed:
 					renderWindow.close();
 			}
-
 			clock.restart();
 			renderWindow.clear();
 			renderWindow.display();
