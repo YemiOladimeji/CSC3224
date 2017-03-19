@@ -11,9 +11,10 @@ int Audio::loadBGM(string filepath)
 		return -1; //Return an error
 	}
 	else {
+		music.openFromFile(filepath);
 		music.play();
-		return 0;
 	}
+	return 0;
 }
 
 int Audio::loadSound(string filepath)
