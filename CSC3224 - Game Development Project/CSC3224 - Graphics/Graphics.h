@@ -3,6 +3,7 @@
 #define GRAPHICS_H
 
 #include <SFML\Graphics.hpp>
+#include <iostream>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ private:
 public:
 	Graphics(); //Default constructor
 	~Graphics() {}; //Destructor
-	int loadTexture(); //Function to load and apply a texture to a sprite
+	sf::Sprite loadTexture(string filepath); //Function to load and apply a texture to a sprite
 };
 
 #endif // !GRAPHICS_H
