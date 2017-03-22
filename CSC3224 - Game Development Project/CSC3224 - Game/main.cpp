@@ -7,8 +7,6 @@ int main() {
 	sf::Clock clock;
 	Audio audio;
 
-	audio.loadBGM("Audio Files/MovementProposition.wav");
-
 	while (renderWindow.isOpen()){
 		while (renderWindow.pollEvent(event)) {
 			switch (event.type) {

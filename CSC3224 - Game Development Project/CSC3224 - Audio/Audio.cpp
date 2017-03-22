@@ -1,4 +1,4 @@
-#include "SFML\Audio.hpp"
+#include <SFML\Audio.hpp>
 #include "Audio.h"
 
 Audio::Audio() { //Default constructor
