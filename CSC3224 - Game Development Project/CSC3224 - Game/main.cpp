@@ -11,21 +11,22 @@ int main() {
 	HumanInterface hI;
 
 	sf::CircleShape c = graphics.textureCircle("Images\\emil-head.png", 50);
+	c.setPosition(360, 240);
 
 	while (renderWindow.isOpen()){
 		while (renderWindow.pollEvent(event)) {
 			switch (event.type) {
 				case sf::Event::KeyPressed:
 					if (event.key.code == sf::Keyboard::Escape) {
-						renderWindow.close();
-						break;
+						renderWindow.close();				
 					}
+					break;
 				case sf::Event::Closed:
 					renderWindow.close();
 			}
 			clock.restart();
+			hI.moveCircle(c, 50, 50);
 			renderWindow.clear();
-			hI.moveCircle(c, 5, 5);
 			renderWindow.draw(c);
 			renderWindow.display();
 		}

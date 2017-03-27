@@ -4,7 +4,7 @@ HumanInterface::HumanInterface()
 {
 }
 
-void HumanInterface::moveCircle(sf::CircleShape shape, float xspeed, float yspeed) { //Function to move a circle via WASD controls
+sf::CircleShape HumanInterface::moveCircle(sf::CircleShape shape, float xspeed, float yspeed) { //Function to move a circle via WASD controls
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		shape.move(-xspeed, 0);
 	}
@@ -17,9 +17,10 @@ void HumanInterface::moveCircle(sf::CircleShape shape, float xspeed, float yspee
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		shape.move(0, yspeed);
 	}
+	return shape;
 }
 
-void HumanInterface::moveSprite(sf::Sprite sprite, float xspeed, float yspeed) { //Function to move a sprite via WASD controls
+sf::Sprite HumanInterface::moveSprite(sf::Sprite sprite, float xspeed, float yspeed) { //Function to move a sprite via WASD controls
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		sprite.move(-xspeed, 0);
 	}
@@ -32,5 +33,6 @@ void HumanInterface::moveSprite(sf::Sprite sprite, float xspeed, float yspeed) {
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		sprite.move(0, yspeed);
 	}
+	return sprite;
 }
 
