@@ -1,4 +1,3 @@
-#include "SFML\Graphics.hpp"
 #include <Audio.h>
 #include <Graphics.h>
 
@@ -22,7 +21,6 @@ int main() {
 			}
 			clock.restart();
 			renderWindow.clear();
-			renderWindow.draw(graphics.loadTexture("Images\\Rem_Anime.png"));
 			renderWindow.display();
 		}
 	}
