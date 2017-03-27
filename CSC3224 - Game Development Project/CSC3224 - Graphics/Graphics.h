@@ -17,7 +17,7 @@ public:
 	Graphics(); //Default constructor
 	~Graphics() {}; //Destructor
 	sf::Sprite textureSprite(string filepath); //Function to load and apply a texture to a sprite
-	sf::CircleShape textureCircle(string filepath); //Function to load and apply a texture to a circle
+	sf::CircleShape textureCircle(string filepath, int radius); //Function to load and apply a texture to a circle
 
 };
 

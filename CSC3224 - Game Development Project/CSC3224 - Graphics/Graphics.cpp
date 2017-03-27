@@ -17,15 +17,16 @@ sf::Sprite Graphics::textureSprite(string filepath)
 	return sprite; //Return empty sprite
 }
 
-sf::CircleShape Graphics::textureCircle(string filepath)
+sf::CircleShape Graphics::textureCircle(string filepath, int radius)
 {
 	if (!texture.loadFromFile(filepath)) { //Try and load texture from designated filepath
 		cout << "Unable to load texture from file."; //If it fails, display error message
 	}
 	else {
 		texture.loadFromFile(filepath); //Load texture
+		circle.setRadius(radius);
 		circle.setTexture(&texture); //Apply texture to circle
-		circle.setTextureRect(sf::IntRect(10,10,500,500));
+		circle.setTextureRect(sf::IntRect(0,0,500,500));
 		return circle; //Return textured circle for drawing
 	}
 	return circle; //Return empty circle
