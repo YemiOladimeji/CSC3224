@@ -21,6 +21,7 @@ int main() {
 			}
 			clock.restart();
 			renderWindow.clear();
+			renderWindow.draw(graphics.textureCircle("Images\\emil-head.png"));
 			renderWindow.display();
 		}
 	}
