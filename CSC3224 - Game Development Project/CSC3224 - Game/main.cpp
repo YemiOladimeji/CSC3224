@@ -8,7 +8,6 @@ int main() {
 	sf::Clock clock;
 	//Audio audio;
 	Graphics graphics;
-	HumanInterface hI;
 
 	sf::CircleShape c = graphics.textureCircle("Images\\emil-head.png", 50);
 	c.setPosition(360, 240);
@@ -25,7 +24,6 @@ int main() {
 					renderWindow.close();
 			}
 			clock.restart();
-			hI.moveCircle(c, 50, 50);
 			renderWindow.clear();
 			renderWindow.draw(c);
 			renderWindow.display();
