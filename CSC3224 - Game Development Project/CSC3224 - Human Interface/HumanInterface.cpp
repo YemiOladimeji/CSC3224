@@ -2,31 +2,34 @@
 
 HumanInterface::HumanInterface()
 {
+	moveUp = false;
 	moveDown = false;
 	moveLeft = false;
-	moveRight = false;
 	moveRight = false;
 }
 
 bool HumanInterface::movingUp(bool isPressed)
 {
-	moveUp == isPressed;
+	moveUp = isPressed;
 	return moveUp;
 }
 
 bool HumanInterface::movingDown(bool isPressed)
 {
-	return false;
+	moveDown = isPressed;
+	return moveDown;
 }
 
 bool HumanInterface::movingLeft(bool isPressed)
 {
-	return false;
+	moveLeft = isPressed;
+	return moveLeft;
 }
 
 bool HumanInterface::movingRight(bool isPressed)
 {
-	return false;
+	moveRight = isPressed;
+	return moveRight;
 }
 
 void HumanInterface::handleInput(sf::Keyboard::Key key, bool isPressed)
@@ -35,12 +38,12 @@ void HumanInterface::handleInput(sf::Keyboard::Key key, bool isPressed)
 		movingUp(isPressed);
 	}
 	else if(key == sf::Keyboard::A){
-		moveLeft = isPressed;
+		movingLeft(isPressed);
 	}
 	else if (key == sf::Keyboard::S){
-		moveDown = isPressed;
+		movingDown(isPressed);
 	}
 	else if (key == sf::Keyboard::D) {
-		moveRight == isPressed;
+		movingRight(isPressed);
 	}
 }
