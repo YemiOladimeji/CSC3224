@@ -12,17 +12,16 @@ private:
 	sf::RenderWindow renderWindow;
 	sf::CircleShape player;
 	Graphics graphics;
-	//HumanInterface hI;
-	bool movingLeft, movingRight, movingUp, movingDown;
+	Audio audio;
+	HumanInterface hI;
 
 	void handleEvents();
 	void update();
 	void render();
-	void handleInput(sf::Keyboard::Key key, bool isPressed);
-
 };
 
 Game::Game() : renderWindow(sf::VideoMode(720, 480), "CSC3224 - GameDev Project") {
+	audio.loadBGM("Audio Files\\Rem Voice Remix - Re-Zero.flac");
 	player = graphics.textureCircle("Images\\emil-head.png", 50);
 	player.setPosition(360, 240);
 }
@@ -40,12 +39,10 @@ void Game::handleEvents() {
 	while (renderWindow.pollEvent(event)) {
 		switch (event.type) {
 		case sf::Event::KeyPressed:
-			//hI.handleInput(event.key.code, true);
-			handleInput(event.key.code, true);
+			hI.handleInput(event.key.code, true);
 			break;
 		case sf::Event::KeyReleased:
-			//hI.handleInput(event.key.code, false);
-			handleInput(event.key.code, false);
+			hI.handleInput(event.key.code, false);
 			break;
 		case sf::Event::Closed:
 			renderWindow.close();
@@ -54,37 +51,19 @@ void Game::handleEvents() {
 	}
 }
 
-void Game::handleInput(sf::Keyboard::Key key, bool isPressed) {
-	if (key == sf::Keyboard::W) {
-		movingUp = isPressed;
-	}
-	else if (key == sf::Keyboard::A) {
-		movingLeft = isPressed;
-	}
-	else if (key == sf::Keyboard::S) {
-		movingDown = isPressed;
-	}
-	else if (key == sf::Keyboard::D) {
-		movingRight = isPressed;
-	}
-}
-
 void Game::update() {
 	sf::Vector2f movement(0, 0);
-	/*if (hI.movingUp(true)) {
-		movement.y -= 20;
-	}
-	if (hI.movingDown(true)){
-		movement.y += 20;
-	}
-	if (hI.movingLeft(true)) {
-		movement.x -= 20;
-	}
-	if (hI.movingRight(true)) {
-		movement.x += 20;
-	}*/
-	if (movingUp) {
+	if (hI.moveUp) {
 		movement.y -= 0.01;
+	}
+	if (hI.moveDown){
+		movement.y += 0.01;
+	}
+	if (hI.moveLeft) {
+		movement.x -= 0.01;
+	}
+	if (hI.moveRight) {
+		movement.x += 0.01;
 	}
 	player.move(movement);
 }

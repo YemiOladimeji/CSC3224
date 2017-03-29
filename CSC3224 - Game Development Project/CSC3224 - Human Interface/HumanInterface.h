@@ -9,16 +9,10 @@ using namespace std;
 
 class HumanInterface {
 
-private:
-	bool moveUp, moveDown, moveLeft, moveRight;
-
 public:
 	HumanInterface(); //Default constructor for instatiating this class
 	~HumanInterface() {}; //Destructor
-	bool movingUp(bool isPressed);
-	bool movingDown(bool isPressed);
-	bool movingLeft(bool isPressed);
-	bool movingRight(bool isPressed);
-	void handleInput(sf::Keyboard::Key, bool isPressed);
+	bool moveUp, moveDown, moveLeft, moveRight; //Boolean variables to detect what direction the player is moving in
+	void handleInput(sf::Keyboard::Key, bool isPressed); //Function to handle key input from the player
 };
 #endif //HUMANINTERFACE_H
