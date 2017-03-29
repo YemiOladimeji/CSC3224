@@ -9,6 +9,8 @@ int main() {
 	Audio audio;
 	Graphics graphics;
 
+	//audio.loadBGM("Audio Files\\Rem Voice Remix - Re-Zero.flac");
+	
 	while (renderWindow.isOpen()){
 		while (renderWindow.pollEvent(event)) {
 			switch (event.type) {
@@ -22,7 +24,8 @@ int main() {
 			}
 			clock.restart();
 			renderWindow.clear();
-			renderWindow.draw(graphics.loadTexture("Images\\Rem_Anime.png"));
+			renderWindow.draw(graphics.createBGMSprite("Images\\Rem_Anime.png"));
+			renderWindow.draw(graphics.clampSprite(graphics.createBGMSprite("Images\\Chaos.gif"), 0, 0, 235, 41));
 			renderWindow.display();
 		}
 	}
