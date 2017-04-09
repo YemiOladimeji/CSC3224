@@ -9,12 +9,14 @@ public:
 	void run();
 
 private:
+	Graphics player, platform, background;
+	Audio audio;
+	HumanInterface hI;
+
 	sf::RenderWindow renderWindow;
 	sf::CircleShape circle;
 	sf::RectangleShape rect;
-	Graphics player, platform;
-	Audio audio;
-	HumanInterface hI;
+	sf::Sprite bg;
 
 	void handleEvents();
 	void update();
@@ -22,17 +24,21 @@ private:
 };
 
 Game::Game() : renderWindow(sf::VideoMode(720, 480), "CSC3224 - GameDev Project") {
-	audio.loadBGM("Audio Files\\Rem Voice Remix - Re-Zero.flac");
+	bg = background.textureBG("Images\\leaf.png");
+	bg.setPosition(0,0);
+	audio.loadBGM("Audio Files\\emil_theme.flac");
 	circle = player.textureCircle("Images\\emil-head.png", 50);
 	circle.setOrigin(circle.getRadius(), circle.getRadius());
 	circle.setPosition(360, 240);
-	rect = platform.textureRect("Images\\Rem_Anime.png", sf::Vector2f(350, 60));
+	rect = platform.textureRect("Images\\girder.png", sf::Vector2f(350, 60));
 	rect.setOrigin(rect.getSize().x/2, rect.getSize().y/2);
 	rect.setPosition(360, 340);
 }
 
 void Game::run() {
+	sf::Clock clock;
 	while (renderWindow.isOpen()) {
+		sf::Time elapsed = clock.restart();
 		handleEvents();
 		update();
 		render();
@@ -59,26 +65,27 @@ void Game::handleEvents() {
 void Game::update() {
 	sf::Vector2f movement(0, 0);
 	if (hI.moveUp) {
-		movement.y -= 0.01;
+		movement.y -= (float)0.01;
 	}
 	if (hI.moveDown){
-		movement.y += 0.01;
+		movement.y += (float)0.01;
 	}
 	if (hI.moveLeft) {
-		movement.x -= 0.01;
-		circle.rotate(-0.05);
+		movement.x -= (float)0.01;
+		circle.rotate((float)-0.05);
 	}
 	if (hI.moveRight) {
-		movement.x += 0.01;
-		circle.rotate(0.05);
+		movement.x += (float)0.01;
+		circle.rotate((float)0.05);
 	}
 	circle.move(movement);
 }
 
 void Game::render() {
 	renderWindow.clear();
-	renderWindow.draw(circle);
+	renderWindow.draw(bg);
 	renderWindow.draw(rect);
+	renderWindow.draw(circle);
 	renderWindow.display();
 }
 

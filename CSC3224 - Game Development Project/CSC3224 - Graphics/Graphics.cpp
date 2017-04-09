@@ -4,7 +4,7 @@ Graphics::Graphics() { //Default constructor
 
 }
 
-sf::Sprite Graphics::textureSprite(string filepath) 
+sf::Sprite Graphics::textureBG(string filepath) 
 {
 	if (!texture.loadFromFile(filepath)) { //Try and load texture from file
 		cout << "Unable to load texture from file."; //Output error message
