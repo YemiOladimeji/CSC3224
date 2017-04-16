@@ -1,6 +1,7 @@
 #include <Audio.h>
 #include <Graphics.h>
 #include <HumanInterface.h>
+#include <Physics.h>
 
 class Game {
 public:
@@ -12,6 +13,7 @@ private:
 	Graphics player, platform, background;
 	Audio audio;
 	HumanInterface hI;
+	Physics physics;
 
 	sf::RenderWindow renderWindow;
 	sf::CircleShape circle;
@@ -24,9 +26,9 @@ private:
 };
 
 Game::Game() : renderWindow(sf::VideoMode(720, 480), "CSC3224 - GameDev Project") {
+	audio.loadBGM("Audio Files\\emil_theme.flac");
 	bg = background.textureBG("Images\\leaf.png");
 	bg.setPosition(0,0);
-	audio.loadBGM("Audio Files\\emil_theme.flac");
 	circle = player.textureCircle("Images\\emil-head.png", 50);
 	circle.setOrigin(circle.getRadius(), circle.getRadius());
 	circle.setPosition(360, 240);
