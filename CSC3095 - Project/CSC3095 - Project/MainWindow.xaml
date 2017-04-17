@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Image Name="camera" Margin="107, 140, 107, 55"/>
     </Grid>
 </Window>

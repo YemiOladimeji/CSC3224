@@ -8,10 +8,10 @@ namespace CSC3095___Project
     class GestureDetector : IDisposable
     {
         //Filepath to the VGB trained gesture database
-        private readonly string gestureDatabase = @"Databases\W4ve.gbd";
+        private readonly string gestureDatabase = @"W4ve.gbd";
 
         //Namec corresponding to the discrete gesture in the database we want to track
-        private readonly string waveGestureName = "Wave";
+        private readonly string waveGestureName = "W4ve";
 
         //Gesture frame source
         private VisualGestureBuilderFrameSource vgbFrameSource = null;
@@ -46,9 +46,9 @@ namespace CSC3095___Project
                 this.vgbFrameReader.FrameArrived += this.Reader_GestureFrameArrived;
             }
 
-            using (VisualGestureBuilderDatabase database = new VisualGestureBuilderDatabase(this.gestureDatabase))
+            using (VisualGestureBuilderDatabase dB = new VisualGestureBuilderDatabase(this.gestureDatabase))
             {
-                foreach (Gesture gesture in database.AvailableGestures)
+                foreach (Gesture gesture in dB.AvailableGestures)
                 {
                     if (gesture.Name.Equals(this.waveGestureName))
                     {

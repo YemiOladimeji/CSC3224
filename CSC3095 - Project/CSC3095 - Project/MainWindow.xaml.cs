@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
 using System.Windows.Controls;
+using System.Runtime.CompilerServices;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -32,6 +33,8 @@ namespace CSC3095___Project
 
         private BodyFrameReader bfR = null;
 
+        private ColorFrameReader cFR = null;
+
         private List<GestureDetector> gestureDetectorList = null;
 
         public MainWindow()
@@ -44,7 +47,11 @@ namespace CSC3095___Project
 
             this.bfR = this.sensor.BodyFrameSource.OpenReader();
 
+            this.cFR = this.sensor.ColorFrameSource.OpenReader();
+
             this.bfR.FrameArrived += this.Reader_BodyFrameArrived;
+
+            this.cFR.FrameArrived += this.Reader_ColorFrameArrived;
 
             this.gestureDetectorList = new List<GestureDetector>();
 
@@ -114,6 +121,17 @@ namespace CSC3095___Project
             this.StatusText = "No Sensor Detected...";
         }
 
+        private void Reader_ColorFrameArrived(object sender, ColorFrameArrivedEventArgs e)
+        {
+            using (ColorFrame colorFrame = e.FrameReference.AcquireFrame())
+            {
+                if (colorFrame != null)
+                {
+                    camera.Source = ToBitmap(colorFrame);
+                }
+            }
+        }
+
         private void Reader_BodyFrameArrived(object sender, BodyFrameArrivedEventArgs e)
         {
             bool dataRecieved = false;
@@ -150,6 +168,29 @@ namespace CSC3095___Project
                     }
                 }
             }
+        }
+
+        //Taking the colour frames from the Kinect and turning them into bitmaps 
+        private ImageSource ToBitmap(ColorFrame frame)
+        {
+            int width = frame.FrameDescription.Width;
+            int height = frame.FrameDescription.Height;
+            var format = PixelFormats.Bgr32;
+
+            byte[] pixels = new byte[width * height * ((PixelFormats.Bgr32.BitsPerPixel + 7) / 8)];
+
+            if (frame.RawColorImageFormat == ColorImageFormat.Bgra)
+            {
+                frame.CopyRawFrameDataToArray(pixels);
+            }
+            else
+            {
+                frame.CopyConvertedFrameDataToArray(pixels, ColorImageFormat.Bgra);
+            }
+
+            int stride = width * format.BitsPerPixel / 8;
+
+            return BitmapSource.Create(width, height, 96, 96, format, null, pixels, stride);
         }
 
 
