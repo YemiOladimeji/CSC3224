@@ -4,20 +4,30 @@ Graphics::Graphics() { //Default constructor
 
 }
 
-sf::Sprite Graphics::createBGMSprite(string filepath) {
+sf::Sprite Graphics::textureSprite(string filepath) 
+{
 	if (!texture.loadFromFile(filepath)) { //Try and load texture from file
 		cout << "Unable to load texture from file."; //Output error message
 	}
 	else {
 		texture.loadFromFile(filepath); //Load texture
-		bgmSprite.setTexture(texture); //Apply texture to sprite
-		return bgmSprite; //Return sprite for drawing
+		sprite.setTexture(texture); //Apply texture to sprite
+		return sprite; //Return textured sprite for drawing
 	}
-	return bgmSprite; //Return empty sprite
+	return sprite; //Return empty sprite
 }
 
-sf::Sprite Graphics::clampSprite(sf::Sprite sprite, int left, int top, int width, int height)
+sf::CircleShape Graphics::textureCircle(string filepath, int radius)
 {
-	sprite.setTextureRect(sf::IntRect(left, top, width, height));
-	return sprite;
+	if (!texture.loadFromFile(filepath)) { //Try and load texture from designated filepath
+		cout << "Unable to load texture from file."; //If it fails, display error message
+	}
+	else {
+		texture.loadFromFile(filepath); //Load texture
+		circle.setRadius(radius);
+		circle.setTexture(&texture); //Apply texture to circle
+		circle.setTextureRect(sf::IntRect(0,0,500,500));
+		return circle; //Return textured circle for drawing
+	}
+	return circle; //Return empty circle
 }

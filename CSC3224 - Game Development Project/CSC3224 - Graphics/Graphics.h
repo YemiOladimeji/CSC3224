@@ -10,14 +10,15 @@ using namespace std;
 class Graphics {
 private:
 	sf::Texture texture; //Object to hold loaded textures for sprites
-	sf::Sprite bgmSprite; //Object to be drawn to the screen with textures applied
-	sf::Sprite pcSprite; //Object to be drawn to the screen with for player controlled characters
+	sf::Sprite sprite; //Object to be drawn to the screen with textures applied
+	sf::CircleShape circle; //Circle to be drawn on screen for testing purposes
 
 public:
 	Graphics(); //Default constructor
 	~Graphics() {}; //Destructor
-	sf::Sprite createBGMSprite(string filepath); //Function to load and apply a static texture to a sprite
-	sf::Sprite clampSprite(sf::Sprite sprite, int left, int top, int width, int height); //Function to cut a sprite sheet down to a specified size for animation
+	sf::Sprite textureSprite(string filepath); //Function to load and apply a texture to a sprite
+	sf::CircleShape textureCircle(string filepath, int radius); //Function to load and apply a texture to a circle
+
 };
 
 #endif // !GRAPHICS_H
