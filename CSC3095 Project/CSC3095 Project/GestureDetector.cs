@@ -75,22 +75,6 @@ namespace CSC3095_Project
             }
         }
 
-        public bool GestureRecognised
-        {
-            get
-            {
-                return this.GestureRecognised;
-            }
-
-            set
-            {
-                if (this.GestureRecognised != value)
-                {
-                    this.GestureRecognised = value;
-                }
-            }
-        }
-
         public bool IsPaused
         {
             get
@@ -133,6 +117,7 @@ namespace CSC3095_Project
             }
         }
 
+
         private void Reader_GestureFrameArrived(object sender, VisualGestureBuilderFrameArrivedEventArgs e)
         {
             VisualGestureBuilderFrameReference frameReference = e.FrameReference;
@@ -140,6 +125,7 @@ namespace CSC3095_Project
             {
                 if (frame != null)
                 {
+                    //Get the gesture results from the last frame
                     IReadOnlyDictionary<Gesture, DiscreteGestureResult> discreteResults = frame.DiscreteGestureResults;
 
                     if (discreteResults != null)
@@ -151,9 +137,13 @@ namespace CSC3095_Project
                                 DiscreteGestureResult result = null;
                                 discreteResults.TryGetValue(gesture, out result);
 
-                                if (result != null)
+                                if (result != null && result.Confidence > 0.8) //Limit the amount of results which are reported back, by setting a minimum confidence level
                                 {
-                                    this.GestureResultView.UpdateGestureResult(true, result.Detected, result.Confidence);
+                                    if (result.Confidence == 1)
+                                    {
+                                        this.GestureResultView.GestureCount++;
+                                    }
+                                    this.GestureResultView.UpdateGestureResult(true, result.Detected, result.Confidence); //Report back the updated gesture result                                 
                                 }
                             }
                         }
@@ -162,12 +152,10 @@ namespace CSC3095_Project
             }
         }
 
-
         public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
-            throw new NotImplementedException();
         }
     }
 }

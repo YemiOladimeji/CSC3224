@@ -22,29 +22,44 @@ namespace CSC3095_Project
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged, IDisposable
-    {   
-        //Variables for setting up the Kinect to recognise frame data from multiple sources
-        private KinectSensor kinect = null;
-        private MultiSourceFrameReader reader = null;
-        private string text = null;
+    public partial class MainWindow : NavigationWindow, INotifyPropertyChanged
+    {
 
-        //Variables for reading in body data
+        private KinectSensor sensor = null;
         private Body[] bodies = null;
-        private int bodyIndex = 0;
-        private bool bodyTracked = false;
+        private string statusText = null;
 
-        //Variables for gesture recognition
-        private GestureDetector gestureDetector = null;
-        private GestureResultView gestureResultView = null;
+        private BodyFrameReader bfR = null;
+        private ColorFrameReader cFR = null;
         private List<GestureDetector> gestureDetectorList = null;
 
         public MainWindow()
         {
+            this.sensor = KinectSensor.GetDefault();
+            this.sensor.Open();
+            this.StatusText = "Waiting for Gesture...";
+            this.bfR = this.sensor.BodyFrameSource.OpenReader();
+            this.cFR = this.sensor.ColorFrameSource.OpenReader();
+            this.bfR.FrameArrived += this.Reader_BodyFrameArrived;
+            this.cFR.FrameArrived += this.Reader_ColorFrameArrived;
+            this.gestureDetectorList = new List<GestureDetector>();
             this.InitializeComponent();
-            this.initialiseKinect();
-            this.openReaders();
-            
+
+            //this.DataContext = this;
+
+            int maxBodies = this.sensor.BodyFrameSource.BodyCount;
+            for (int i = 0; i < maxBodies; ++i)
+            {
+                GestureResultView result = new GestureResultView(i, false, false, 0.0f, 0);
+                GestureDetector detector = new GestureDetector(this.sensor, result);
+                this.gestureDetectorList.Add(detector);
+
+                ContentControl contentControl = new ContentControl();
+                contentControl.Content = this.gestureDetectorList[i].GestureResultView;
+                Grid.SetColumn(contentControl, 0);
+                Grid.SetRow(contentControl, 0);
+                //this.contentGrid.Children.Add(contentControl);          
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -53,104 +68,69 @@ namespace CSC3095_Project
         {
             get
             {
-                return this.text;
+                return this.statusText;
             }
 
-            private set
+            set
             {
-                if (this.text != value)
+                if (this.statusText != value)
                 {
-                    this.text = value;
-                    this.NotifyPropertyChanged();
+                    this.statusText = value;
+                    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Status Text"));
                 }
             }
         }
 
-        void initialiseKinect()
+        private void Sensor_IsAvailableChanged(object sender, IsAvailableChangedEventArgs e)
         {
-            this.kinect = KinectSensor.GetDefault();
+            this.StatusText = "No Sensor Detected...";
+        }
 
-            if (this.kinect != null)
+        private void Reader_ColorFrameArrived(object sender, ColorFrameArrivedEventArgs e)
+        {
+            using (ColorFrame colorFrame = e.FrameReference.AcquireFrame())
             {
-                this.kinect.Open();
-            }
-        }
-
-        void setDetectorList()
-        {
-            this.gestureDetectorList = new List<GestureDetector>();
-            GestureResultView result = new GestureResultView(false, false, 0.0f);
-            GestureDetector detector = new GestureDetector(this.kinect, result);
-            result.PropertyChanged += GestureResult_PropertyChanged;
-            this.gestureDetectorList.Add(detector);
-        }
-
-        void openReaders()
-        {
-            this.reader = this.kinect.OpenMultiSourceFrameReader(FrameSourceTypes.Color | FrameSourceTypes.Body);
-            this.reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
-        }
-
-        void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
-        {
-            bool dataReceived = false;
-            var reference = e.FrameReference.AcquireFrame();
-
-            //Colour stream
-            using (var frame = reference.ColorFrameReference.AcquireFrame())
-            {
-                if (frame != null)
+                if (colorFrame != null)
                 {
-                    Camera.Source = ToBitmap(frame);
+                    //camera.Source = ToBitmap(colorFrame);
                 }
             }
+        }
 
-            //Body stream
-            using (var frame = reference.BodyFrameReference.AcquireFrame())
+        private void Reader_BodyFrameArrived(object sender, BodyFrameArrivedEventArgs e)
+        {
+            bool dataRecieved = false;
+
+            using (BodyFrame bodyFrame = e.FrameReference.AcquireFrame())
             {
-                if (frame != null)
+                if (bodyFrame != null)
                 {
                     if (this.bodies == null)
                     {
-                        this.bodies = new Body[frame.BodyFrameSource.BodyCount];
+                        this.bodies = new Body[bodyFrame.BodyCount];
                     }
-                    frame.GetAndRefreshBodyData(this.bodies);
-                    dataReceived = true;
+
+                    bodyFrame.GetAndRefreshBodyData(this.bodies);
+                    dataRecieved = true;
                 }
             }
 
-            if (dataReceived)
+            if (dataRecieved)
             {
-                Body body = null;
+                if (this.bodies != null)
+                {
+                    int maxBodies = this.sensor.BodyFrameSource.BodyCount;
+                    for (int i = 0; i < maxBodies; ++i)
+                    {
+                        Body body = this.bodies[i];
+                        ulong trackingID = body.TrackingId;
 
-                if (this.bodyTracked)
-                {
-                    if (this.bodies[this.bodyIndex].IsTracked)
-                    {
-                        body = this.bodies[this.bodyIndex];
-                    } else
-                    {
-                        bodyTracked = false;
-                    }
-                }
-                if (!bodyTracked)
-                {
-                    for (int i = 0; i < bodies.Length; ++i)
-                    {
-                        if (this.bodies[i].IsTracked)
+                        if (trackingID != this.gestureDetectorList[i].TrackingId)
                         {
-                            this.bodyIndex = i;
-                            this.bodyTracked = true;
-                            break;
+                            this.gestureDetectorList[i].TrackingId = trackingID;
+                            this.gestureDetectorList[i].IsPaused = trackingID == 0;
                         }
                     }
-                }
-                if (body != null && this.bodyTracked && body.IsTracked)
-                {
-                    this.detectBlock.Text = "I have noticed you!";
-                } else
-                {
-                    this.detectBlock.Text = "I can't see you...";
                 }
             }
         }
@@ -183,27 +163,32 @@ namespace CSC3095_Project
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void Dispose()
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
+            if (this.bfR != null)
             {
-                if (this.gestureDetector != null)
-                {
-                    this.gestureDetector.Dispose();
-                    this.gestureDetector = null;
-                }
+                this.bfR.FrameArrived -= Reader_BodyFrameArrived;
+                this.bfR.Dispose();
+                this.bfR = null;
             }
-        }
 
-        void GestureResult_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            
+            if (this.gestureDetectorList != null)
+            {
+                foreach (GestureDetector detector in this.gestureDetectorList)
+                {
+                    detector.Dispose();
+                }
+
+                this.gestureDetectorList.Clear();
+                this.gestureDetectorList = null;
+            }
+
+            if (this.sensor != null)
+            {
+                this.sensor.IsAvailableChanged -= this.Sensor_IsAvailableChanged;
+                this.sensor.Close();
+                this.sensor = null;
+            }
         }
 
     }
