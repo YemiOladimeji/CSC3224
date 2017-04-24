@@ -1,5 +1,6 @@
 #include <Audio.h>
 #include <Graphics.h>
+#include <Texture.h>
 #include <HumanInterface.h>
 #include <Physics.h>
 
@@ -13,7 +14,6 @@ private:
 	Graphics player, platform, background;
 	Audio audio;
 	HumanInterface hI;
-	Physics physics;
 
 	sf::RenderWindow renderWindow;
 	sf::CircleShape circle;

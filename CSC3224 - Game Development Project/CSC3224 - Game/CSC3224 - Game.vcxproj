@@ -69,10 +69,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)\SFML-2.4.1\include;$(SolutionDir)\CSC3224 - Resource Management;$(SolutionDir)\CSC3224 - Profiling;$(SolutionDir)\CSC3224 - Physics;$(SolutionDir)\CSC3224 - Input and Output;$(SolutionDir)\CSC3224 - Initialise and Shutdown;$(SolutionDir)\CSC3224 - Human Interface;$(SolutionDir)\CSC3224 - Graphics;$(SolutionDir)\CSC3224 - Audio;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)\Box2D\include;$(SolutionDir)\SFML-2.4.1\include;$(SolutionDir)\CSC3224 - Resource Management;$(SolutionDir)\CSC3224 - Profiling;$(SolutionDir)\CSC3224 - Physics;$(SolutionDir)\CSC3224 - Input and Output;$(SolutionDir)\CSC3224 - Initialise and Shutdown;$(SolutionDir)\CSC3224 - Human Interface;$(SolutionDir)\CSC3224 - Graphics;$(SolutionDir)\CSC3224 - Audio;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)\SFML-2.4.1\include;$(SolutionDir)\CSC3224 - Resource Management;$(SolutionDir)\CSC3224 - Profiling;$(SolutionDir)\CSC3224 - Physics;$(SolutionDir)\CSC3224 - Input and Output;$(SolutionDir)\CSC3224 - Initialise and Shutdown;$(SolutionDir)\CSC3224 - Human Interface;$(SolutionDir)\CSC3224 - Graphics;$(SolutionDir)\CSC3224 - Audio;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)\Box2D\include;$(SolutionDir)\SFML-2.4.1\include;$(SolutionDir)\CSC3224 - Resource Management;$(SolutionDir)\CSC3224 - Profiling;$(SolutionDir)\CSC3224 - Physics;$(SolutionDir)\CSC3224 - Input and Output;$(SolutionDir)\CSC3224 - Initialise and Shutdown;$(SolutionDir)\CSC3224 - Human Interface;$(SolutionDir)\CSC3224 - Graphics;$(SolutionDir)\CSC3224 - Audio;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
