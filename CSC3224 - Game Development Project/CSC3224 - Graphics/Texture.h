@@ -6,20 +6,16 @@
 
 using namespace std;
 
-
 class Texture
 {
 public:
 	Texture(); //Default constructor
-	virtual ~Texture(); //Destructor
+	virtual ~Texture() {}; //Destructor
 
-	void setName(string &name); //Function to set the name of the texture
-	string getName(); //Function to retrieve the name of the texture
 	void loadTexture(const string &name, const string &filepath); //Function to load an image from a file to use as a texture
-	sf::Texture &getTexRef(const string &texture);
+	sf::Texture &getTexRef(const string &texture); //Function to fetch a reference to the specified texture
 
 private:
-	string name; //Name of the texture
 	sf::Texture texture; //SFML texture object
 	map<string, sf::Texture> textures; //Map of created texture objects
 };

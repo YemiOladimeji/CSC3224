@@ -134,10 +134,12 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="BGM.cpp" />
+    <ClCompile Include="SoundFX.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Audio.h" />
+    <ClInclude Include="BGM.h" />
+    <ClInclude Include="SoundFX.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

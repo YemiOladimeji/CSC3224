@@ -1,4 +1,5 @@
-#include <Audio.h>
+#include <BGM.h>
+#include <SoundFX.h>
 #include <Graphics.h>
 #include <Texture.h>
 #include <HumanInterface.h>
@@ -11,10 +12,11 @@ public:
 	void run();
 
 private:
-	Graphics player, platform, background;
-	Audio audio;
+	Graphics player, platform;
 	HumanInterface hI;
 	Texture txMan;
+	BGM bgm;
+	SoundFX sfxMan;
 
 	sf::RenderWindow renderWindow;
 	sf::CircleShape circle;
@@ -25,11 +27,12 @@ private:
 	void update();
 	void render();
 	void loadTextures();
+	void loadAudio();
 };
 
 Game::Game() : renderWindow(sf::VideoMode(720, 480), "CSC3224 - GameDev Project") {
+	bgm.loadBGM("Audio Files\\emil_theme.flac");
 	this->loadTextures();
-	audio.loadBGM("Audio Files\\emil_theme.flac");
 	this->bg.setTexture(this->txMan.getTexRef("background"));
 	bg.setPosition(0,0);
 	circle = player.textureCircle("Images\\emil-head.png", 50);
@@ -98,6 +101,10 @@ void Game::loadTextures() {
 	txMan.loadTexture("background","Images\\leaf.png");
 	txMan.loadTexture("player","Images\\emil-head.png");
 	txMan.loadTexture("platform","Images\\girder.png");
+}
+
+void Game::loadAudio() {
+
 }
 
 int main() {

@@ -8,17 +8,9 @@ Texture::Texture() //Default constructor
 	
 }
 
-Texture::~Texture() //Function to unload the specified resource
+Texture::~Texture() //Function to unload the specified resources
 {
 
-}
-
-void Texture::setName(string &name) { //Function to assign a name to the texture
-	this->name = name;
-}
-
-string Texture::getName() { //Function to retrieve the name of the texture
-	return name;
 }
 
 void Texture::loadTexture(const string &name, const string &filepath)  //Function to load an image and set it as a texture
