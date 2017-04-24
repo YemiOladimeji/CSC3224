@@ -6,11 +6,6 @@ Texture::Texture() //Default constructor
 	
 }
 
-Texture::~Texture() //Function to unload the specified resources
-{
-
-}
-
 void Texture::loadTexture(const string &name, const string &filepath)  //Function to load an image and set it as a texture
 {
 	if (!texture.loadFromFile(filepath)) {

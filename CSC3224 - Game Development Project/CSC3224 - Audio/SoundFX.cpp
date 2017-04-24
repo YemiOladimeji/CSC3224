@@ -8,11 +8,6 @@ SoundFX::SoundFX() //Default constructor
 
 }
 
-SoundFX::~SoundFX() //Destructor 
-{
-
-}
-
 void SoundFX::loadSound(const string &name, const string &filepath) { //Function to load SFX files to be played by a SoundBuffer object
 	if (!sfx.loadFromFile(filepath)) {
 		cout << "Error: Could not open file."; //Output an error message when the file fails to load
