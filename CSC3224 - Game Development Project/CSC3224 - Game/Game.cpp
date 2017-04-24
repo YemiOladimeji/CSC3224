@@ -1,7 +1,7 @@
 #include <BGM.h>
 #include <SoundFX.h>
-#include <Graphics.h>
 #include <Texture.h>
+#include <Graphics.h>
 #include <HumanInterface.h>
 #include <Physics.h>
 
@@ -35,6 +35,7 @@ Game::Game() : renderWindow(sf::VideoMode(720, 480), "CSC3224 - GameDev Project"
 	this->loadTextures();
 	this->bg.setTexture(this->txMan.getTexRef("background"));
 	bg.setPosition(0,0);
+
 	circle = player.textureCircle("Images\\emil-head.png", 50);
 	circle.setOrigin(circle.getRadius(), circle.getRadius());
 	circle.setPosition(360, 240);

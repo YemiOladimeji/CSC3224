@@ -6,7 +6,12 @@
 
 using namespace std;
 
-class Circle {
+class Circle 
+{
+public:
+	Circle(); //Default constructor
+	virtual ~Circle() {}; //Destructor
+
 
 };
 

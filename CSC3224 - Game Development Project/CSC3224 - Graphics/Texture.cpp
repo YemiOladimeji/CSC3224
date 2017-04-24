@@ -1,6 +1,4 @@
 #include "Texture.h"
-
-using namespace std;
 #include <iostream>
 
 Texture::Texture() //Default constructor
