@@ -14,6 +14,7 @@ private:
 	Graphics player, platform, background;
 	Audio audio;
 	HumanInterface hI;
+	Texture bgTex;
 
 	sf::RenderWindow renderWindow;
 	sf::CircleShape circle;
