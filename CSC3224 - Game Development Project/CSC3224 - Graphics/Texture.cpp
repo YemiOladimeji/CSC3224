@@ -1,6 +1,7 @@
 #include "Texture.h"
 
 using namespace std;
+#include <iostream>
 
 Texture::Texture() //Default constructor
 {
@@ -9,6 +10,7 @@ Texture::Texture() //Default constructor
 
 Texture::~Texture() //Function to unload the specified resource
 {
+
 }
 
 void Texture::setName(string &name) { //Function to assign a name to the texture
@@ -19,14 +21,19 @@ string Texture::getName() { //Function to retrieve the name of the texture
 	return name;
 }
 
-sf::Texture Texture::loadTexture(const string &filepath)  //Function to load an image and set it as a texture
+void Texture::loadTexture(const string &name, const string &filepath)  //Function to load an image and set it as a texture
 {
 	if (!texture.loadFromFile(filepath)) {
-		
+		cout << "Error: Unable to load texture from file."; //Output an error message when the file fails to load
 	}
 	else {
 		texture.loadFromFile(filepath); //Load image from file into texture object
-		return texture; //Return the texture object as a loaded texture
+		this->textures[name] = texture; //Add the texture object to the map
+		return;
 	}
-	return texture; //Return empty texture
+	return;
+}
+
+sf::Texture &Texture::getTexRef(const string &texture) {
+	return this->textures.at(texture); //Return a reference the texture with the matching name
 }

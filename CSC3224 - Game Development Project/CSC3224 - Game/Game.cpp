@@ -14,7 +14,7 @@ private:
 	Graphics player, platform, background;
 	Audio audio;
 	HumanInterface hI;
-	Texture bgTex;
+	Texture txMan;
 
 	sf::RenderWindow renderWindow;
 	sf::CircleShape circle;
@@ -24,11 +24,13 @@ private:
 	void handleEvents();
 	void update();
 	void render();
+	void loadTextures();
 };
 
 Game::Game() : renderWindow(sf::VideoMode(720, 480), "CSC3224 - GameDev Project") {
+	this->loadTextures();
 	audio.loadBGM("Audio Files\\emil_theme.flac");
-	bg = background.textureBG("Images\\leaf.png");
+	this->bg.setTexture(this->txMan.getTexRef("background"));
 	bg.setPosition(0,0);
 	circle = player.textureCircle("Images\\emil-head.png", 50);
 	circle.setOrigin(circle.getRadius(), circle.getRadius());
@@ -90,6 +92,12 @@ void Game::render() {
 	renderWindow.draw(rect);
 	renderWindow.draw(circle);
 	renderWindow.display();
+}
+
+void Game::loadTextures() {
+	txMan.loadTexture("background","Images\\leaf.png");
+	txMan.loadTexture("player","Images\\emil-head.png");
+	txMan.loadTexture("platform","Images\\girder.png");
 }
 
 int main() {
