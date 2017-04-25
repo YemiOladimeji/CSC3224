@@ -10,15 +10,15 @@ class Game {
 public:
 	Game(); //Default constructor
 	~Game() {}; //Destructor
-	void run();
+	void run(); //Function to run the game
 
 private:
-	HumanInterface hI;
-	Texture txMan;
 	BGM bgm;
+	Texture txMan;
 	SoundFX sfxMan;
 	Circle cirMan;
 	Rectangle recMan;
+	HumanInterface hI;
 
 	sf::RenderWindow renderWindow;
 	sf::CircleShape circle;
@@ -29,12 +29,13 @@ private:
 	void update();
 	void render();
 	void loadTextures();
-	void loadAudio();
+	void loadSFX();
 	void createCircles();
 	void createRectangles();
 };
 
-Game::Game() : renderWindow(sf::VideoMode(720, 480), "CSC3224 - GameDev Project") {
+Game::Game() : renderWindow(sf::VideoMode(720, 480), "CSC3224 - GameDev Project") 
+{
 	this->bgm.loadBGM("Audio Files\\emil_theme.flac");
 
 	this->loadTextures();
@@ -52,10 +53,11 @@ Game::Game() : renderWindow(sf::VideoMode(720, 480), "CSC3224 - GameDev Project"
 	this->rect = this->recMan.getRectRef("platform");
 	this->rect.setTexture(&this->txMan.getTexRef("platformTex"));
 	this->rect.setOrigin(rect.getSize().x/2, rect.getSize().y/2);
-	this->rect.setPosition(360, 340);
+	this->rect.setPosition(360, 440);
 }
 
-void Game::run() {
+void Game::run() 
+{
 	sf::Clock clock;
 	while (renderWindow.isOpen()) {
 		sf::Time elapsed = clock.restart();
@@ -65,7 +67,8 @@ void Game::run() {
 	}
 }
 
-void Game::handleEvents() {
+void Game::handleEvents() 
+{
 	sf::Event event;
 	while (renderWindow.pollEvent(event)) {
 		switch (event.type) {
@@ -74,6 +77,7 @@ void Game::handleEvents() {
 			break;
 		case sf::Event::KeyReleased:
 			hI.handleInput(event.key.code, false);
+			hI.jumping = false;
 			break;
 		case sf::Event::Closed:
 			renderWindow.close();
@@ -82,26 +86,44 @@ void Game::handleEvents() {
 	}
 }
 
-void Game::update() {
-	sf::Vector2f movement(0, 0);
-	if (hI.moveUp) {
-		movement.y -= (float)0.01;
+void Game::update() 
+{
+	const float gravity = 0.05f;
+	sf::Vector2f velocity(0, 0);
+
+	if (hI.moveUp) 
+	{
+
 	}
-	if (hI.moveDown){
-		movement.y += (float)0.01;
+	if (hI.moveDown)
+	{
+		
 	}
-	if (hI.moveLeft) {
-		movement.x -= (float)0.01;
-		circle.rotate((float)-0.05);
+	if (hI.moveLeft) 
+	{
+		velocity.x -= (float)0.05;
+		circle.rotate((float)-0.07);
 	}
-	if (hI.moveRight) {
-		movement.x += (float)0.01;
-		circle.rotate((float)0.05);
+	if (hI.moveRight) 
+	{
+		velocity.x += (float)0.05;
+		circle.rotate((float)0.07);
 	}
-	circle.move(movement);
+
+	if (circle.getPosition().y + circle.getRadius() < rect.getPosition().y || velocity.y < 0)
+	{
+		velocity.y += gravity;
+	}
+	else {
+		circle.setPosition(circle.getPosition().x, rect.getPosition().y - circle.getRadius());
+		velocity.y = 0;
+	}
+
+	circle.move(velocity); 
 }
 
-void Game::render() {
+void Game::render() 
+{
 	renderWindow.clear();
 	renderWindow.draw(bg);
 	renderWindow.draw(rect);
@@ -109,25 +131,30 @@ void Game::render() {
 	renderWindow.display();
 }
 
-void Game::loadTextures() {
+void Game::loadTextures() 
+{
 	txMan.loadTexture("background","Images\\leaf.png");
 	txMan.loadTexture("playerTex","Images\\emil-head.png");
 	txMan.loadTexture("platformTex","Images\\girder.png");
 }
 
-void Game::loadAudio() {
+void Game::loadSFX() 
+{
 
 }
 
-void Game::createCircles() {
+void Game::createCircles() 
+{
 	cirMan.createCircle("player", 50);
 }
 
-void Game::createRectangles() {
+void Game::createRectangles() 
+{
 	recMan.createRectangle("platform", sf::Vector2f(350, 60));
 }
 
-int main() {
+int main() 
+{
 	Game game;
 	game.run();
 

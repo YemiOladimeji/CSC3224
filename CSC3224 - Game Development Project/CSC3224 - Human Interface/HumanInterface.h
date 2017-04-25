@@ -12,7 +12,8 @@ class HumanInterface {
 public:
 	HumanInterface(); //Default constructor for instatiating this class
 	~HumanInterface() {}; //Destructor
-	bool moveUp, moveDown, moveLeft, moveRight; //Boolean variables to detect what direction the player is moving in
+
+	bool moveUp, moveDown, moveLeft, moveRight, jumping; //Boolean variables to detect what direction the player is moving in
 	void handleInput(sf::Keyboard::Key, bool isPressed); //Function to handle key input from the player
 };
 #endif //HUMANINTERFACE_H
