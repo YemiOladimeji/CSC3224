@@ -18,6 +18,12 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ResourceManagement.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ResourceManagement.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BC1A2495-0822-409F-A914-54D90188D705}</ProjectGuid>
     <RootNamespace>CSC3224ResourceManagement</RootNamespace>

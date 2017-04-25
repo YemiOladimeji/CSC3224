@@ -6,7 +6,7 @@ Circle::Circle() //Default constructor
 
 }
 
-void Circle::createCircle(const string &name, const int &radius) //Function to create the circle
+void Circle::createCircle(const string &name, const float &radius) //Function to create the circle
 {
 	if (radius < 0) { //Condition to check whether the value of the radius is valid
 		cout << "Error: Invalid radius value."; //Output error 

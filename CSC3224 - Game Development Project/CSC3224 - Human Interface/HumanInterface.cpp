@@ -11,17 +11,18 @@ HumanInterface::HumanInterface()
 
 void HumanInterface::handleInput(sf::Keyboard::Key key, bool isPressed) //Function to handle movement inputs from the player
 {
-	if (key == sf::Keyboard::W || key == sf::Keyboard::Up) {
+	if (key == sf::Keyboard::W) {
 		jumping = true;
 		moveUp = isPressed;
 	}
-	else if(key == sf::Keyboard::A || key == sf::Keyboard::Left){
+	else if(key == sf::Keyboard::A){
 		moveLeft = isPressed;
 	}
-	else if (key == sf::Keyboard::S || key == sf::Keyboard::Down){
+	else if (key == sf::Keyboard::S){
 		moveDown = isPressed;
 	}
-	else if (key == sf::Keyboard::D || key == sf::Keyboard::Right) {
+	else if (key == sf::Keyboard::D) {
 		moveRight = isPressed;
 	}
 }
+
