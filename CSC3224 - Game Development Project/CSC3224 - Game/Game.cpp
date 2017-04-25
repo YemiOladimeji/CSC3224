@@ -1,7 +1,8 @@
 #include <BGM.h>
 #include <SoundFX.h>
 #include <Texture.h>
-#include <Graphics.h>
+#include <Circle.h>
+#include <Rectangle.h>
 #include <HumanInterface.h>
 #include <Physics.h>
 
@@ -12,11 +13,12 @@ public:
 	void run();
 
 private:
-	Graphics player, platform;
 	HumanInterface hI;
 	Texture txMan;
 	BGM bgm;
 	SoundFX sfxMan;
+	Circle cirMan;
+	Rectangle recMan;
 
 	sf::RenderWindow renderWindow;
 	sf::CircleShape circle;
@@ -28,20 +30,29 @@ private:
 	void render();
 	void loadTextures();
 	void loadAudio();
+	void createCircles();
+	void createRectangles();
 };
 
 Game::Game() : renderWindow(sf::VideoMode(720, 480), "CSC3224 - GameDev Project") {
-	bgm.loadBGM("Audio Files\\emil_theme.flac");
+	this->bgm.loadBGM("Audio Files\\emil_theme.flac");
+
 	this->loadTextures();
 	this->bg.setTexture(this->txMan.getTexRef("background"));
-	bg.setPosition(0,0);
+	this->bg.setPosition(0,0);
 
-	circle = player.textureCircle("Images\\emil-head.png", 50);
-	circle.setOrigin(circle.getRadius(), circle.getRadius());
-	circle.setPosition(360, 240);
-	rect = platform.textureRect("Images\\girder.png", sf::Vector2f(350, 60));
-	rect.setOrigin(rect.getSize().x/2, rect.getSize().y/2);
-	rect.setPosition(360, 340);
+	this->createCircles();
+	this->createRectangles();
+
+	this->circle = this->cirMan.getCircleRef("player");
+	this->circle.setTexture(&this->txMan.getTexRef("playerTex"));
+	this->circle.setOrigin(circle.getRadius(), circle.getRadius());
+	this->circle.setPosition(360, 240);
+
+	this->rect = this->recMan.getRectRef("platform");
+	this->rect.setTexture(&this->txMan.getTexRef("platformTex"));
+	this->rect.setOrigin(rect.getSize().x/2, rect.getSize().y/2);
+	this->rect.setPosition(360, 340);
 }
 
 void Game::run() {
@@ -100,12 +111,20 @@ void Game::render() {
 
 void Game::loadTextures() {
 	txMan.loadTexture("background","Images\\leaf.png");
-	txMan.loadTexture("player","Images\\emil-head.png");
-	txMan.loadTexture("platform","Images\\girder.png");
+	txMan.loadTexture("playerTex","Images\\emil-head.png");
+	txMan.loadTexture("platformTex","Images\\girder.png");
 }
 
 void Game::loadAudio() {
 
+}
+
+void Game::createCircles() {
+	cirMan.createCircle("player", 50);
+}
+
+void Game::createRectangles() {
+	recMan.createRectangle("platform", sf::Vector2f(350, 60));
 }
 
 int main() {

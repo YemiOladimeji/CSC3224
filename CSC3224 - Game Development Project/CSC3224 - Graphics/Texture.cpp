@@ -19,6 +19,7 @@ void Texture::loadTexture(const string &name, const string &filepath)  //Functio
 	return;
 }
 
-sf::Texture &Texture::getTexRef(const string &texture) {
+sf::Texture &Texture::getTexRef(const string &texture) 
+{
 	return this->textures.at(texture); //Return a reference the texture with the matching name
 }
