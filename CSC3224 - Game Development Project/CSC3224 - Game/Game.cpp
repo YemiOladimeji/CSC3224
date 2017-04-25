@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "GameState.h"
 #include <Texture.h>
+#include <Animation.h>
 #include <SFML\System.hpp>
 
 void Game::pushState(GameState* state) 
@@ -63,11 +64,32 @@ void Game::gameLoop()
 void Game::loadTextures()
 {
 	manager.loadTexture("background", "Images\\background.png");
+	manager.loadTexture("grass", "Images\\grass.png");
+	manager.loadTexture("forest", "Images\\forest.png");
+	manager.loadTexture("water", "Images\\water.png");
+	manager.loadTexture("residential", "Images\\residential.png");
+	manager.loadTexture("commercial", "Images\\commercial.png");
+	manager.loadTexture("industrial", "Images\\industrial.png");
+	manager.loadTexture("road", "Images\\road.png");
+}
+
+void Game::loadTiles() {
+	Animation staticAnim(0, 0, 1.0f);
+
+	this->tiles["grass"] = Tile(this->TILE_SIZE, 1, manager.getTexRef("grass"), {staticAnim}, TileType::GRASS, 50, 0, 1);
+	tiles["forest"] = Tile(this->TILE_SIZE, 1, manager.getTexRef("forest"), { staticAnim }, TileType::FOREST, 100, 0, 1);
+	tiles["water"] = Tile(this->TILE_SIZE, 1, manager.getTexRef("water"), { Animation(0, 3, 0.5f), Animation(0, 3, 0.5f), Animation(0, 3, 0.5f) }, TileType::GRASS, 0, 0, 1);
+	tiles["residential"] = Tile(this->TILE_SIZE, 2, manager.getTexRef("residential"), { staticAnim, staticAnim, staticAnim, staticAnim, staticAnim, staticAnim }, TileType::RESIDENTIAL, 300, 50, 6);
+	tiles["commercial"] = Tile(this->TILE_SIZE, 2, manager.getTexRef("commercial"), { staticAnim, staticAnim, staticAnim, staticAnim }, TileType::COMMERCIAL, 300, 50, 4);
+	tiles["industrial"] = Tile(this->TILE_SIZE, 2, manager.getTexRef("industrial"), { staticAnim, staticAnim, staticAnim, staticAnim }, TileType::INDUSTRIAL, 300, 50, 4);
+	tiles["road"] = Tile(this->TILE_SIZE, 1, manager.getTexRef("road"), { staticAnim, staticAnim, staticAnim, staticAnim, staticAnim, staticAnim, staticAnim , staticAnim, staticAnim, staticAnim, staticAnim }, TileType::ROAD, 100, 0, 1);
+	return;
 }
 
 Game::Game() {
 	this->loadTextures();
-	this->window.create(sf::VideoMode(720, 480), "CSC3224 - City Builder");
+	this->loadTiles();
+	this->window.create(sf::VideoMode(720, 480), "CSC3224 - CitySim");
 	this->window.setFramerateLimit(60);
 	this->background.setTexture(this->manager.getTexRef("background"));
 }

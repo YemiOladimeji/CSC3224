@@ -4,6 +4,14 @@
 
 #include <SFML\Graphics.hpp>
 #include "GameState.h"
+#include "Map.h"
+
+enum class ActionState 
+{
+	NONE,
+	PANNING,
+	SELECTING
+};
 
 class GameStateEditor : public GameState 
 {
@@ -15,7 +23,11 @@ public:
 	virtual void handleInput();
 
 private:
-	sf::View gameView;
-	sf::View guiView;
+	sf::View gameView, guiView;
+	Map map;
+	ActionState actionState;
+	sf::Vector2i panningAnchor, selectionStart, selectionEnd;
+	float zoomLevel;
+	Tile* currentTile;
 };
 #endif // !GAME_STATE_EDITOR_H
