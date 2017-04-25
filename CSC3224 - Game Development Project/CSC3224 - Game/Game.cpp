@@ -62,7 +62,7 @@ void Game::gameLoop()
 
 void Game::loadTextures()
 {
-	manager.loadTexture("background", "Images\leaf.png");
+	manager.loadTexture("background", "Images\\background.png");
 }
 
 Game::Game() {
