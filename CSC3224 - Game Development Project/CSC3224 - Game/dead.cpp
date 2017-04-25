@@ -1,4 +1,4 @@
-#include <BGM.h>
+/*#include <BGM.h>
 #include <SoundFX.h>
 #include <Texture.h>
 #include <Circle.h>
@@ -152,4 +152,4 @@ int main()
 	game.run();
 
 	return 0;
-}
+}*/

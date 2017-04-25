@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "GameState.h"
+#include <Texture.h>
 #include <SFML\System.hpp>
 
 void Game::pushState(GameState* state) 
@@ -59,12 +60,19 @@ void Game::gameLoop()
 	}
 }
 
-Game::Game() {
-	this->window.create(sf::VideoMode(720, 480), "CSC3224 - City Builder");
-	this->window.setFramerateLimit(60);
+void Game::loadTextures()
+{
+	manager.loadTexture("background", "Images\leaf.png");
 }
 
-Game::Game() 
+Game::Game() {
+	this->loadTextures();
+	this->window.create(sf::VideoMode(720, 480), "CSC3224 - City Builder");
+	this->window.setFramerateLimit(60);
+	this->background.setTexture(this->manager.getTexRef("background"));
+}
+
+Game::~Game() 
 {
 	while (!this->states.empty()) {
 		popState();

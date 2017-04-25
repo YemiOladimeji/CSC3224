@@ -8,7 +8,7 @@ void GameStateStart::draw(const float deltaTime)
 	this->game->window.setView(this->view);
 
 	this->game->window.clear(sf::Color::Black);
-	//this->game->window.draw(this->game->background);
+	this->game->window.draw(this->game->background);
 
 	return;
 }
@@ -30,9 +30,9 @@ void GameStateStart::handleInput()
 			break;
 		case sf::Event::Resized:
 			this->view.setSize(event.size.width, event.size.height);
-			//this->game->background.setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0,0)));
-			//this->game->background.setScale(float(event.size.width)/float(this->game->background.getTexture()->getSize().x),
-			//float(event.size.height) / float (this->game->background.getTexture()->getSize().y));
+			this->game->background.setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0,0)));
+			this->game->background.setScale(float(event.size.width)/float(this->game->background.getTexture()->getSize().x),
+			float(event.size.height) / float (this->game->background.getTexture()->getSize().y));
 			break;
 		case sf::Event::KeyPressed:
 			if (event.key.code == sf::Keyboard::Escape) {
