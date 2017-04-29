@@ -45,7 +45,7 @@ namespace CSC3095_Project
             this.gestureDetectorList = new List<GestureDetector>();
             this.InitializeComponent();
 
-            //this.DataContext = this;
+            this.DataContext = this;
 
             int maxBodies = this.sensor.BodyFrameSource.BodyCount;
             for (int i = 0; i < maxBodies; ++i)
@@ -58,7 +58,7 @@ namespace CSC3095_Project
                 contentControl.Content = this.gestureDetectorList[i].GestureResultView;
                 Grid.SetColumn(contentControl, 0);
                 Grid.SetRow(contentControl, 0);
-                //this.contentGrid.Children.Add(contentControl);          
+                this.contentGrid.Children.Add(contentControl);          
             }
         }
 
@@ -92,7 +92,7 @@ namespace CSC3095_Project
             {
                 if (colorFrame != null)
                 {
-                    //camera.Source = ToBitmap(colorFrame);
+                    camera.Source = ToBitmap(colorFrame);
                 }
             }
         }

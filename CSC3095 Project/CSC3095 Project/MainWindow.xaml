@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CSC3095_Project"
         mc:Ignorable="d"
         Title="ReUP!" Height="480" Width="720" Background="White"
-        Closing="MainWindow_Closing">
+        Source="ReUPHome.xaml" Closing="MainWindow_Closing">
     
     
     

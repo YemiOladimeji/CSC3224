@@ -1,0 +1,23 @@
+﻿<Page x:Class="CSC3095_Project.ReUPHome"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CSC3095_Project"
+      mc:Ignorable="d" 
+      d:DesignHeight="480" d:DesignWidth="720"
+      Title="ReUP - Home">
+    <Canvas>
+        <Image Source="ReUP logo.png" Height="174" Width="148" Canvas.Left="105" Canvas.Top="26"/>
+        <Image Source="Terebii.png" Canvas.Left="465" Canvas.Top="231"/>
+        <Image Source="Speech I.png" Height="268" Width="268" Canvas.Left="307" Canvas.Top="26"/>
+        <ListBox Name="exerciseListBox" Width="100" Canvas.Left="132" Canvas.Top="219">
+            <ListBoxItem Content="Karate Chop"/>
+            <ListBoxItem Content="Arm Curl"/>
+            <ListBoxItem Content="Push"/>
+            <ListBoxItem Content="Wipe"/>
+            <ListBoxItem Content="Wave"/>
+        </ListBox>
+        <Button Width="124" Height="24" HorizontalAlignment="Right" Canvas.Left="118" Canvas.Top="358" Content="Select Exercise!"/>
+    </Canvas>
+</Page>
