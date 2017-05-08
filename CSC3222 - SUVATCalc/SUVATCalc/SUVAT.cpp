@@ -1,3 +1,4 @@
+#include "..\..\CSC3222 - GameSims\CSC3222 - GameSims\SUVAT.h"
 
 #pragma once
 #include "SUVAT.h"
@@ -9,6 +10,7 @@ using namespace std;
 SUVAT::SUVAT(){ //Default constructor
 
 }
+
 
 Vector3 SUVAT::calculate(Vector3 u, Vector3 v, float t)
 {
