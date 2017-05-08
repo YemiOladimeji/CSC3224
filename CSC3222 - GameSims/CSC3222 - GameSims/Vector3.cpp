@@ -1,6 +1,7 @@
 #include "Vector3.h"
 #include <math.h>
 
+//Three argument constructor
 Vector3::Vector3(float x, float y, float z)
 {
 	this->x = x;
@@ -8,17 +9,20 @@ Vector3::Vector3(float x, float y, float z)
 	this->z = z;
 }
 
-bool Vector3::compareFloat(float a, float b, float epsilon)
+//Function to compare floating point numbers
+bool Vector3::compareFloat(float a, float b, float epsilon = 0.005f)
 {
 	return (fabs(a-b) < epsilon);
 }
 
+//Function to calculate the inverse of the Vector
 void Vector3::inverse(float v[3]) {
 	v[0] = -v[0]; //invert x
 	v[1] = -v[1]; //invert y
 	v[2] = -v[2]; //invert z
 }
 
+//Function to copy the values from one Vector to another
 void Vector3::copy(const float v[3], float out[3])
 {
 	out[0] = v[0];
@@ -26,15 +30,74 @@ void Vector3::copy(const float v[3], float out[3])
 	out[2] = v[2];
 }
 
+//Function to compare the values of two Vectors
 bool Vector3::compare(const float v0[3], const float v1[3])
 {
 	return (compareFloat(v0[0], v1[0]) && compareFloat(v0[1], v1[1]) && compareFloat(v0[2], v1[2]));
 }
 
-float Vector3::dist(const float p1[3], const float p2[3])
+//Function to calculate the distance between two Vectors
+float Vector3::dist(Vector3 v1, Vector3 v2)
 {
-	float x = p1[0] - p2[0];
-	float y = p1[1] - p2[1];
-	float z = p1[2] - p2[2];
-	return sqrt(x*x + y*y + z*z);
+	Vector3 d = Vector3((v1.getX() - v2.getX()),(v1.getY() - v2.getY()),(v1.getZ() - v2.getZ()));
+	return d.getMagnitudeSquared();
+}
+
+//Add vectors together
+Vector3 Vector3::operator+(const float v[3])
+{
+	return Vector3((x + v[0]), (y + v[1]), (z+v[2]));
+}
+
+//Subtract vectors from eachother
+Vector3 Vector3::operator-(const float v[3])
+{
+	return Vector3((x - v[0]),(y - v[1]),(z - v[2]));
+}
+
+//Multiply a vector by a scalar
+Vector3 Vector3::operator*(const float n)
+{
+	return Vector3((x * n),(y * n),(z * n));
+}
+
+//Calculate the scalar product
+Vector3 Vector3::operator*(const float v[3])
+{
+	return Vector3((x * v[0]),(y * v[1]),(z * v[2]));
+}
+
+//Divide a vector by a scalar
+Vector3 Vector3::operator/(const float v[3])
+{
+	return Vector3((x / v[0]),(y / v[1]),(z / v[2]));
+}
+
+bool Vector3::operator==(const Vector3 & v)
+{
+	return (x == v.x && y == v.y && z == v.z);
+}
+
+//Function to return the Entity's 'x' position
+float Vector3::getX()
+{
+	return x;
+}
+
+//Function to return the Entity's 'y' position
+float Vector3::getY()
+{
+	return y;
+}
+
+//Function to return the Entity's 'z' position
+float Vector3::getZ()
+{
+	return z;
+}
+
+//Compute the magnitude of a vector
+float Vector3::getMagnitudeSquared()
+{
+	return x * x + y * y + z * z;
 }
