@@ -18,19 +18,28 @@ public:
 	bool compare(const float v0[3], const float v1[3]); //Function to compare the values of two Vectors
 	float dist(Vector3 v1, Vector3 v2); //Function to calculate the distance between two Vectors
 
-	//Overload functions
-	Vector3 operator+ (const float v[3]); //Add vectors together
-	Vector3 operator- (const float v[3]); //Subtract vectors from eachother
-	Vector3 operator* (const float n); //Multiply a vector by a scalar
-	Vector3 operator* (const float v[3]); //Calculate the scalar product
-	Vector3 operator/ (const float v[3]); //Divide a vector by a scalar
-	bool operator== (const Vector3 &v); //Compare to see if two Vectors are equal to each other
+	//Set functions
+	void setX(float x); //Function to set the 'x' value of the vector
+	void setY(float y); //Function to set the 'y' value of the vector
+	void setZ(float z); //Function to set the 'z' value of the vector
 
+	//Get functions
 	float getX(); //Function to return the Entity's 'x' position
 	float getY(); //Function to return the Entity's 'y' position
 	float getZ(); //Function to return the Entity's 'z' position
 
+	//Overload functions
+	Vector3 operator+ (const Vector3 v); //Add vectors together
+	Vector3 operator- (const Vector3 v); //Subtract vectors from eachother
+	Vector3 operator* (const float n); //Multiply a vector by a scalar
+	Vector3 operator* (const Vector3 v); //Calculate the scalar product
+	Vector3 operator/ (const Vector3 v); //Divide a vector by a scalar
+	bool operator== (const Vector3 &v); //Compare to see if two Vectors are equal to each other
+
 	//Calculate the magnitude of a Vector
 	float getMagnitudeSquared();
+
+	//Return the normalised value of a Vector
+	Vector3 normalise();
 };
 #endif VECTOR3_H

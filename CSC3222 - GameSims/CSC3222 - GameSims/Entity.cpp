@@ -1,5 +1,4 @@
 #include "Entity.h"
-#include <vector>
 
 //Function to update the 'x' component of the position vector
 void Entity::updateX(Vector3 pos)

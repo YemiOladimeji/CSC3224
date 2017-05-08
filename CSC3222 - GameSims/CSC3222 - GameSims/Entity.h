@@ -4,6 +4,7 @@
 
 //Include the Vector3 class
 #include "Vector3.h"
+#include <vector>
 
 class Entity {
 

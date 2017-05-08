@@ -43,39 +43,22 @@ float Vector3::dist(Vector3 v1, Vector3 v2)
 	return d.getMagnitudeSquared();
 }
 
-//Add vectors together
-Vector3 Vector3::operator+(const float v[3])
+//Function to set the 'x' value of the vector
+void Vector3::setX(float x)
 {
-	return Vector3((x + v[0]), (y + v[1]), (z+v[2]));
+	this->x = x;
 }
 
-//Subtract vectors from eachother
-Vector3 Vector3::operator-(const float v[3])
+//Function to set the 'y' value of the vector
+void Vector3::setY(float y)
 {
-	return Vector3((x - v[0]),(y - v[1]),(z - v[2]));
+	this->y = y;
 }
 
-//Multiply a vector by a scalar
-Vector3 Vector3::operator*(const float n)
+//Function to set the 'z' value of the vector
+void Vector3::setZ(float z)
 {
-	return Vector3((x * n),(y * n),(z * n));
-}
-
-//Calculate the scalar product
-Vector3 Vector3::operator*(const float v[3])
-{
-	return Vector3((x * v[0]),(y * v[1]),(z * v[2]));
-}
-
-//Divide a vector by a scalar
-Vector3 Vector3::operator/(const float v[3])
-{
-	return Vector3((x / v[0]),(y / v[1]),(z / v[2]));
-}
-
-bool Vector3::operator==(const Vector3 & v)
-{
-	return (x == v.x && y == v.y && z == v.z);
+	this->z = z;
 }
 
 //Function to return the Entity's 'x' position
@@ -96,8 +79,53 @@ float Vector3::getZ()
 	return z;
 }
 
+//Add vectors together
+Vector3 Vector3::operator+(const Vector3 v)
+{
+	return Vector3((x + v.x), (y + v.y), (z+v.z));
+}
+
+//Subtract vectors from eachother
+Vector3 Vector3::operator-(const Vector3 v)
+{
+	return Vector3((x - v.x),(y - v.y),(z - v.z));
+}
+
+//Multiply a vector by a scalar
+Vector3 Vector3::operator*(const float n)
+{
+	return Vector3((x * n),(y * n),(z * n));
+}
+
+//Calculate the scalar product
+Vector3 Vector3::operator*(const Vector3 v)
+{
+	return Vector3((x * v.x),(y * v.y),(z * v.z));
+}
+
+//Divide a vector by a scalar
+Vector3 Vector3::operator/(const Vector3 v)
+{
+	return Vector3((x / v.x),(y / v.y),(z / v.z));
+}
+
+bool Vector3::operator==(const Vector3 & v)
+{
+	return (x == v.x && y == v.y && z == v.z);
+}
+
 //Compute the magnitude of a vector
 float Vector3::getMagnitudeSquared()
 {
 	return x * x + y * y + z * z;
+}
+
+//Return the normalised value of a Vector
+Vector3 Vector3::normalise()
+{
+	float mag = getMagnitudeSquared();
+	x /= mag;
+	y /= mag;
+	z /= mag;
+	return Vector3(x, y, z);
 }
