@@ -48,6 +48,16 @@ void Entity::updateEntitiesInRange(vector<Entity> v)
 	}
 }
 
+void Entity::updateAcceleration(Vector3 accel)
+{
+	acceleration = accel;
+}
+
+void Entity::updateVelocity(Vector3 vel)
+{
+	velocity = vel;
+}
+
 //Function to return the current position of the Entity
 Vector3 Entity::getPosition()
 {
@@ -64,6 +74,26 @@ float Entity::getAggroRange()
 int Entity::getEntitiesInRange()
 {
 	return entitiesInRange;
+}
+
+float Entity::getMass()
+{
+	return 1.0f / inverseMass;
+}
+
+float Entity::getInverseMass()
+{
+	return inverseMass;
+}
+
+Vector3 Entity::getAcceleration()
+{
+	return acceleration;
+}
+
+Vector3 Entity::getVelocity()
+{
+	return velocity;
 }
 
 //Equality overload function

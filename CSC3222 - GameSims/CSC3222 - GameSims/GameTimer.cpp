@@ -1,19 +1,50 @@
 #include "GameTimer.h"
 
-//Function to return the startTime variable
-float GameTimer::getTime()
+//Creates an instance of a stopped timer
+GameTimer::GameTimer() : running(false)
 {
-	return startTime;
 }
 
-//Function to return the latestFrameTime variable
-float GameTimer::getLFTime()
+//Initialises the timer
+void GameTimer::initialise()
 {
-	return latestFrameTime;
+	QueryPerformanceFrequency(&freq);
 }
 
-//Function to return dt for the purposes of updating a physics loop
-float GameTimer::getDeltaTime()
+//Function to start the timer
+void GameTimer::start()
 {
-	return latestFrameTime - startTime;
+	running = true;
+	QueryPerformanceCounter(&startTime);
 }
+
+//Function to stop the timer
+void GameTimer::stop()
+{
+	running = false;
+}
+
+//Function which gets the time since the timer srtarted
+float GameTimer::absTime()
+{
+	LARGE_INTEGER t;
+	QueryPerformanceCounter(&t);
+	return (float)((t.QuadPart - startTime.QuadPart) * 1000.0f / freq.QuadPart);
+}
+
+//Function which returns the latest frame time
+float GameTimer::latestFrameTime()
+{
+	return absTime() - lFT;
+}
+
+//Function which returns the time since the last frame
+float GameTimer::getFrameTime()
+{
+	float t = absTime();
+	float dt = t - lFT;
+	lFT = absTime();
+	return dt;
+}
+
+
