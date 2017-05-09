@@ -84,7 +84,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\SFML-2.4.2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\SFML-2.4.2\include;$(SolutionDir)\CSC3224 - Human Interface</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -92,6 +92,12 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\SFML-2.4.1\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system-s-d.lib;winmm.lib;sfml-window-s-d.lib;opengl32.lib;gdi32.lib;sfml-graphics-s-d.lib;freetype.lib;jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetype.lib;jpeg.lib;CSC3224 - Human Interface.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)\x64\Debug;$(SolutionDir)\SFML-2.4.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -114,7 +120,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\SFML-2.4.2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\SFML-2.4.2\include;$(SolutionDir)\CSC3224 - Physics</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -124,12 +130,30 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\SFML-2.4.1\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system-s-d.lib;winmm.lib;sfml-window-s-d.lib;opengl32.lib;gdi32.lib;sfml-graphics-s-d.lib;freetype.lib;jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;jpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)\SFML-2.4.2\lib;$(SolutionDir)\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationHandler.cpp" />
+    <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationHandler.h" />
+    <ClInclude Include="Circle.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

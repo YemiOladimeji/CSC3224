@@ -130,14 +130,16 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)\SFML-2.4.2\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-system-s-d.lib;winmm.lib;sfml-audio-s-d.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib</AdditionalDependencies>
+      <AdditionalDependencies>sfml-system-s.lib;winmm.lib;sfml-audio-s.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="BGM.cpp" />
+    <ClCompile Include="SoundFX.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Audio.h" />
+    <ClInclude Include="BGM.h" />
+    <ClInclude Include="SoundFX.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

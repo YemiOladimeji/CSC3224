@@ -6,44 +6,23 @@ HumanInterface::HumanInterface()
 	moveDown = false;
 	moveLeft = false;
 	moveRight = false;
+	jumping = false;
 }
 
-bool HumanInterface::movingUp(bool isPressed)
-{
-	moveUp = isPressed;
-	return moveUp;
-}
-
-bool HumanInterface::movingDown(bool isPressed)
-{
-	moveDown = isPressed;
-	return moveDown;
-}
-
-bool HumanInterface::movingLeft(bool isPressed)
-{
-	moveLeft = isPressed;
-	return moveLeft;
-}
-
-bool HumanInterface::movingRight(bool isPressed)
-{
-	moveRight = isPressed;
-	return moveRight;
-}
-
-void HumanInterface::handleInput(sf::Keyboard::Key key, bool isPressed)
+void HumanInterface::handleInput(sf::Keyboard::Key key, bool isPressed) //Function to handle movement inputs from the player
 {
 	if (key == sf::Keyboard::W) {
-		movingUp(isPressed);
+		jumping = true;
+		moveUp = isPressed;
 	}
 	else if(key == sf::Keyboard::A){
-		movingLeft(isPressed);
+		moveLeft = isPressed;
 	}
 	else if (key == sf::Keyboard::S){
-		movingDown(isPressed);
+		moveDown = isPressed;
 	}
 	else if (key == sf::Keyboard::D) {
-		movingRight(isPressed);
+		moveRight = isPressed;
 	}
 }
+
