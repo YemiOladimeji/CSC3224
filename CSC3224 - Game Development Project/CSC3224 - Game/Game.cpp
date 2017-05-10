@@ -73,7 +73,8 @@ void Game::loadTextures()
 	manager.loadTexture("road", "Images\\road.png");
 }
 
-void Game::loadTiles() {
+void Game::loadTiles() 
+{
 	Animation staticAnim(0, 0, 1.0f);
 
 	this->tiles["grass"] = Tile(this->TILE_SIZE, 1, manager.getTexRef("grass"), {staticAnim}, TileType::GRASS, 50, 0, 1);
@@ -83,6 +84,22 @@ void Game::loadTiles() {
 	tiles["commercial"] = Tile(this->TILE_SIZE, 2, manager.getTexRef("commercial"), { staticAnim, staticAnim, staticAnim, staticAnim }, TileType::COMMERCIAL, 300, 50, 4);
 	tiles["industrial"] = Tile(this->TILE_SIZE, 2, manager.getTexRef("industrial"), { staticAnim, staticAnim, staticAnim, staticAnim }, TileType::INDUSTRIAL, 300, 50, 4);
 	tiles["road"] = Tile(this->TILE_SIZE, 1, manager.getTexRef("road"), { staticAnim, staticAnim, staticAnim, staticAnim, staticAnim, staticAnim, staticAnim , staticAnim, staticAnim, staticAnim, staticAnim }, TileType::ROAD, 100, 0, 1);
+	return;
+}
+
+void Game::loadFonts() 
+{
+	sf::Font font;
+	font.loadFromFile("Fonts\\font.ttf");
+	this->fonts["mainFont"] = font;
+
+	return;
+}
+
+void Game::loadStyleSheets() {
+	this->styles["button"] = GUIStyle(&this->fonts.at("mainFont"), 1, sf::Color(0xc6, 0xc6, 0xc6), sf::Color(0x94, 0x94, 0x94), sf::Color(0x00, 0x00, 0x00), sf::Color(0x61, 0x61, 0x61), sf::Color(0x94, 0x94, 0x94), sf::Color(0x00, 0x00, 0x00));
+	this->styles["text"] = GUIStyle(&this->fonts.at("mainFont"), 0, sf::Color(0x00, 0x00, 0x00, 0x00), sf::Color(0x00, 0x00, 0x00), sf::Color(0xff, 0xff, 0xff), sf::Color(0x00, 0x00, 0x00, 0x00), sf::Color(0x00, 0x00, 0x00), sf::Color(0xff, 0x00, 0x00));
+
 	return;
 }
 

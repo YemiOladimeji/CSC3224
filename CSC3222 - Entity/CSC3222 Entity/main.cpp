@@ -4,27 +4,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "SFML\Graphics.hpp"
 
 using namespace std;
+
+//randomly generate positions for entities
+//assign those positions to the entities <- vector data may possibly be getting lost, due to no proper "setPosition" function, needs checking
+//push those entities onto the vector <- using two for loops may have meant that the elements in the vector only existed in the scope of that loop and not globally
+//use previously written functions
 
 int main() {
 
 	vector<Entity> entities;
 	int entNo, ab;
 
-	//randomly generate positions for entities
-	//assign those positions to the entities <- vector data may possibly be getting lost, due to no proper "setPosition" function, needs checking
-	//push those entities onto the vector <- using two for loops may have meant that the elements in the vector only existed in the scope of that loop and not globally
-	//use previously written functions
+	sf::RenderWindow window(sf::VideoMode(400,400), "CSC3222 - Gaming Simulations Coursework");
+	sf::RectangleShape frame;
+	sf::Texture texture;
 
-	cout << "Enter the number of entities you would like to generate: ";
-	cin >> entNo;
+	texture.loadFromFile("Images\CSC3222 Coursework.bmp");
+	frame.setTexture(&texture);
 
-	for (std::vector<Entity>::size_type j = 0; j != entities.size(); j++) {
+	while (window.isOpen()) {
+		sf::Event event;
+		while (window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed) {
+				window.close();
+			}
 
-		cout << "\nEntity " << j << ": " << "<" << entities[j].getEntityX() << ", " << entities[j].getEntityY() << ", " << entities[j].getEntityZ() << ">";
-		cout << "\nCurrent entities in range for entity " << j << ": " << entities[j].getEntitiesInRange();
+			window.clear();
+			window.draw(frame);
+			window.display();
+		}
 	}
-	cin >> ab;
 	return 0;
 }

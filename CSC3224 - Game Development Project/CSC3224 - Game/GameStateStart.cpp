@@ -3,12 +3,32 @@
 #include "GameStateStart.h"
 #include "GameState.h"
 
+GameStateStart::GameStateStart(Game* game)
+{
+	this->game = game;
+	sf::Vector2f pos = sf::Vector2f(this->game->window.getSize());
+	this->view.setSize(pos);
+	pos *= 0.5f;
+	this->view.setCenter(pos);
+
+	this->GUISystem.emplace("menu", GUI(sf::Vector2f(192, 32), 4, false, game->styles.at("button"), {std::make_pair("Load Game", "loadGame")}));
+
+	this->GUISystem.at("menu").setPosition(pos);
+	this->GUISystem.at("menu").setOrigin(96, 32 * 1 / 2);
+	this->GUISystem.at("menu").show();
+}
+
+
 void GameStateStart::draw(const float deltaTime)
 {
 	this->game->window.setView(this->view);
 
 	this->game->window.clear(sf::Color::Black);
 	this->game->window.draw(this->game->background);
+
+	for (auto GUI : this->GUISystem) {
+		this->game->window.draw(GUI.second);
+	}
 
 	return;
 }
@@ -21,6 +41,9 @@ void GameStateStart::update(const float deltaTime)
 void GameStateStart::handleInput()
 {
 	sf::Event event;
+
+	sf::Vector2f mousePos = this->game->window.mapPixelToCoords(sf::Mouse::getPosition(this->game->window), this->view);
+
 	while (this->game->window.pollEvent(event))
 	{
 		switch (event.type)
@@ -42,20 +65,25 @@ void GameStateStart::handleInput()
 				this->loadGame();
 			}
 				break;
+		case sf::Event::MouseMoved:
+			this->GUISystem.at("menu").highlight(this->GUISystem.at("menu").getEntry(mousePos));
+			break;
+		case sf::Event::MouseButtonPressed:
+			if (event.mouseButton.button == sf::Mouse::Left)
+			{
+				std::string msg = this->GUISystem.at("menu").activate(mousePos);
+
+				if (msg == "loadGame")
+				{
+					this->loadGame();
+				}
+			}
+			break;
 		default:
 			break;
 		}
 	}
 	return;
-}
-
-GameStateStart::GameStateStart(Game* game) 
-{
-	this->game = game;
-	sf::Vector2f pos = sf::Vector2f(this->game->window.getSize());
-	this->view.setSize(pos);
-	pos *= 0.5f;
-	this->view.setCenter(pos);
 }
 
 void GameStateStart::loadGame() {

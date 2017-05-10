@@ -6,12 +6,47 @@
         xmlns:local="clr-namespace:CSC3095_Project"
         mc:Ignorable="d"
         Title="CSC3095 Project" Height="600" Width="600" Background="White">
-    <Grid>
-        <Image Name="Camera" Margin="107,140,90,55"/>
-        <Canvas Name="canvas">
-            <TextBlock x:Name="titleBlock" TextWrapping="Wrap" Text="CSC3095 - Custom Gesture Detection Test" Height="33" Width="447" Canvas.Left="84" Canvas.Top="35" FontSize="24"/>
-            <TextBlock x:Name="detectBlock" TextWrapping="Wrap" Text="No gesture detected." Canvas.Left="178" Canvas.Top="131" Height="67" Width="258" FontSize="24"/>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:GestureResultView}">
+            <Grid Width="Auto" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Detected, StringFormat='Performing Gesture: {0}'}" FontSize="20" Grid.Row="1"/>
+                <TextBlock Text="{Binding Confidence, StringFormat='Confidence Value: {0}'}" FontSize="20" Grid.Row="2"/>
+                <TextBlock Text="{Binding GestureCount, StringFormat='Gesture Count: {0}'}" FontSize="20" Grid.Row="3"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
 
-        </Canvas>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" FontSize="20" Text="Custom Gesture Test - Wave"/>
+
+        <Grid x:Name="contentGrid" Margin="1,5,0,0" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="45">
+                <Viewbox x:Name="cameraHold" Width="500" Height="500">
+                    <Image x:Name="camera" Stretch="Uniform"/>
+                </Viewbox>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

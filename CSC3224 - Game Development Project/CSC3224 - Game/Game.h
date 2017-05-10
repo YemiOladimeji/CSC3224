@@ -6,6 +6,7 @@
 #include <SFML\Graphics.hpp>
 #include <Texture.h>
 #include "Tile.h"
+#include <GUIStyle.h>
 
 using namespace std;
 
@@ -24,6 +25,8 @@ public:
 	sf::Sprite background;
 
 	map<string, Tile> tiles;
+	map<string, GUIStyle> styles;
+	map<string, sf::Font> fonts;
 
 	void pushState(GameState* state); //Function which takes a pointer to a state and pushes it onto the stack
 	void popState(); //Function which removes the top state from the stack
@@ -35,6 +38,8 @@ public:
 private:
 	void loadTextures();
 	void loadTiles();
+	void loadStyleSheets();
+	void loadFonts();
 };
 
 #endif // !GAME_H

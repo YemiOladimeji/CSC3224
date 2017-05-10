@@ -44,6 +44,7 @@ namespace CSC3095_Project
             this.InitializeComponent();
             this.initialiseKinect();
             this.openReaders();
+            this.setDetectorList();
             
         }
 
@@ -101,7 +102,7 @@ namespace CSC3095_Project
             {
                 if (frame != null)
                 {
-                    Camera.Source = ToBitmap(frame);
+                    camera.Source = ToBitmap(frame);
                 }
             }
 
@@ -144,13 +145,6 @@ namespace CSC3095_Project
                             break;
                         }
                     }
-                }
-                if (body != null && this.bodyTracked && body.IsTracked)
-                {
-                    this.detectBlock.Text = "I have noticed you!";
-                } else
-                {
-                    this.detectBlock.Text = "I can't see you...";
                 }
             }
         }
