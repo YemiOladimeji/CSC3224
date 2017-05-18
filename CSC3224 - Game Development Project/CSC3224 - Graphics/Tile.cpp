@@ -62,5 +62,7 @@ string tileTypeToString(TileType type)
 		return "Commercial Zone";
 	case TileType::INDUSTRIAL:
 		return "Industrial Zone";
+	case TileType::ROAD:
+		return "Road";
 	}
 }

@@ -30,7 +30,7 @@ public:
 		this->day = 0;
 	}
 
-	City(string cityName, int tileSize, map<string, Tile> &tiles) : City() 
+	City(string cityName, int tileSize, std::map<string, Tile> &tiles) : City() 
 	{
 		this->map.tileSize = tileSize;
 		load(cityName, tiles);
@@ -46,8 +46,8 @@ public:
 
 	void load(string cityName, std::map<string, Tile> &tileAtlas);
 	void save(string cityName);
-	void update(float dt);
 
+	void update(float dt);
 	void bulldoze(const Tile &tile);
 	void shuffleTiles();
 	void tileChanged();

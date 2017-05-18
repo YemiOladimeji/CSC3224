@@ -3,8 +3,10 @@
 #define GAME_STATE_START_H
 
 #include <SFML\Graphics.hpp>
-#include "GameState.h"
+
 #include <utility>
+
+#include "GameState.h"
 #include <GUI.h>
 
 class GameStateStart : public GameState

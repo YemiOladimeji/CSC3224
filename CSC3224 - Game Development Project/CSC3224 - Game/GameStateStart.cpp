@@ -1,4 +1,5 @@
 #include <SFML\Graphics.hpp>
+
 #include "GameStateEditor.h"
 #include "GameStateStart.h"
 #include "GameState.h"
@@ -11,7 +12,7 @@ GameStateStart::GameStateStart(Game* game)
 	pos *= 0.5f;
 	this->view.setCenter(pos);
 
-	this->GUISystem.emplace("menu", GUI(sf::Vector2f(192, 32), 4, false, game->styles.at("button"), {std::make_pair("Load Game", "loadGame")}));
+	this->GUISystem.emplace("menu", GUI(sf::Vector2f(192, 32), 4, false, game->styles.at("button"), {std::make_pair(" Start Game", "loadGame")}));
 
 	this->GUISystem.at("menu").setPosition(pos);
 	this->GUISystem.at("menu").setOrigin(96, 32 * 0.5);
@@ -35,7 +36,7 @@ void GameStateStart::draw(const float deltaTime)
 
 void GameStateStart::update(const float deltaTime)
 {
-
+	return;
 }
 
 void GameStateStart::handleInput()
@@ -88,6 +89,6 @@ void GameStateStart::handleInput()
 }
 
 void GameStateStart::loadGame() {
-	game->pushState(new GameStateEditor(game));
+	this->game->pushState(new GameStateEditor(this->game));
 	return;
 }

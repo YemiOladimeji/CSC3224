@@ -17,6 +17,8 @@ public:
 
 private:
 	sf::Texture texture; //SFML texture object
+	
+	
 	map<string, sf::Texture> textures; //Map of created texture objects
 };
 

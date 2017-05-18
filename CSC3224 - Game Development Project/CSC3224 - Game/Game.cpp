@@ -78,12 +78,12 @@ void Game::loadTiles()
 	Animation staticAnim(0, 0, 1.0f);
 
 	this->tiles["grass"] = Tile(this->TILE_SIZE, 1, manager.getTexRef("grass"), {staticAnim}, TileType::GRASS, 50, 0, 1);
-	tiles["forest"] = Tile(this->TILE_SIZE, 1, manager.getTexRef("forest"), { staticAnim }, TileType::FOREST, 100, 0, 1);
-	tiles["water"] = Tile(this->TILE_SIZE, 1, manager.getTexRef("water"), { Animation(0, 3, 0.5f), Animation(0, 3, 0.5f), Animation(0, 3, 0.5f) }, TileType::GRASS, 0, 0, 1);
-	tiles["residential"] = Tile(this->TILE_SIZE, 2, manager.getTexRef("residential"), { staticAnim, staticAnim, staticAnim, staticAnim, staticAnim, staticAnim }, TileType::RESIDENTIAL, 300, 50, 6);
-	tiles["commercial"] = Tile(this->TILE_SIZE, 2, manager.getTexRef("commercial"), { staticAnim, staticAnim, staticAnim, staticAnim }, TileType::COMMERCIAL, 300, 50, 4);
-	tiles["industrial"] = Tile(this->TILE_SIZE, 2, manager.getTexRef("industrial"), { staticAnim, staticAnim, staticAnim, staticAnim }, TileType::INDUSTRIAL, 300, 50, 4);
-	tiles["road"] = Tile(this->TILE_SIZE, 1, manager.getTexRef("road"), { staticAnim, staticAnim, staticAnim, staticAnim, staticAnim, staticAnim, staticAnim , staticAnim, staticAnim, staticAnim, staticAnim }, TileType::ROAD, 100, 0, 1);
+	this->tiles["forest"] = Tile(this->TILE_SIZE, 1, manager.getTexRef("forest"), { staticAnim }, TileType::FOREST, 100, 0, 1);
+	this->tiles["water"] = Tile(this->TILE_SIZE, 1, manager.getTexRef("water"), { Animation(0, 3, 0.5f), Animation(0, 3, 0.5f), Animation(0, 3, 0.5f) }, TileType::GRASS, 0, 0, 1);
+	this->tiles["residential"] = Tile(this->TILE_SIZE, 2, manager.getTexRef("residential"), { staticAnim, staticAnim, staticAnim, staticAnim, staticAnim, staticAnim }, TileType::RESIDENTIAL, 300, 50, 6);
+	this->tiles["commercial"] = Tile(this->TILE_SIZE, 2, manager.getTexRef("commercial"), { staticAnim, staticAnim, staticAnim, staticAnim }, TileType::COMMERCIAL, 300, 50, 4);
+	this->tiles["industrial"] = Tile(this->TILE_SIZE, 2, manager.getTexRef("industrial"), { staticAnim, staticAnim, staticAnim, staticAnim }, TileType::INDUSTRIAL, 300, 50, 4);
+	this->tiles["road"] = Tile(this->TILE_SIZE, 1, manager.getTexRef("road"), { staticAnim, staticAnim, staticAnim, staticAnim, staticAnim, staticAnim, staticAnim , staticAnim, staticAnim, staticAnim, staticAnim }, TileType::ROAD, 100, 0, 1);
 	return;
 }
 

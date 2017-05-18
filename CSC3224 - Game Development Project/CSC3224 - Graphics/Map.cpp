@@ -349,13 +349,13 @@ void Map::select(sf::Vector2i start, sf::Vector2i end, vector<TileType> blacklis
 	{
 		for (int x = start.x; x < end.x; ++x) 
 		{
-			this->selected[y*this->width + x] = 1;
+			this->selected[y * this->width + x] = 1;
 			++this->numSelected;
 			for (auto type : blacklist) 
 			{
-				if (this->tiles[y*this->width+x].tileType == type) 
+				if (this->tiles[y * this->width + x].tileType == type) 
 				{
-					this->selected[y*this->width + x] = 2;
+					this->selected[y * this->width + x] = 2;
 					--this->numSelected;
 					break;
 				}

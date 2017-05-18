@@ -2,10 +2,12 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <stack>
 #include <SFML\Graphics.hpp>
-#include <Texture.h>
+
+#include <stack>
+
 #include "Tile.h"
+#include <Texture.h>
 #include <GUIStyle.h>
 
 using namespace std;

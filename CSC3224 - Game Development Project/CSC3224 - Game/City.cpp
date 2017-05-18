@@ -1,6 +1,3 @@
-#include "City.h"
-#include <Tile.h>
-
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
@@ -10,7 +7,10 @@
 #include <sstream>
 #include <numeric>
 
-void City::load(string cityName, std::map<std::string, Tile> &tileAtlas)
+#include "City.h"
+#include <Tile.h>
+
+void City::load(string cityName, std::map<std::string, Tile> &tiles)
 {
 	int width = 0;
 	int height = 0;
@@ -28,27 +28,76 @@ void City::load(string cityName, std::map<std::string, Tile> &tileAtlas)
 			std::string value;
 			if (std::getline(lineStream, value))
 			{
-				if (key == "width")                  width = std::stoi(value);
-				else if (key == "height")            height = std::stoi(value);
-				else if (key == "day")               this->day = std::stoi(value);
-				else if (key == "populationPool")    this->populationPool = std::stod(value);
-				else if (key == "employmentPool")    this->employmentPool = std::stod(value);
-				else if (key == "population")        this->population = std::stod(value);
-				else if (key == "employable")        this->employable = std::stod(value);
-				else if (key == "birthRate")         this->birthRate = std::stod(value);
-				else if (key == "deathRate")         this->deathRate = std::stod(value);
-				else if (key == "residentialTax")    this->residentialTax = std::stod(value);
-				else if (key == "commercialTax")     this->commercialTax = std::stod(value);
-				else if (key == "industrialTax")     this->industrialTax = std::stod(value);
-				else if (key == "funds")             this->funds = std::stod(value);
-				else if (key == "earnings")          this->earnings = std::stod(value);
+				if (key == "width") 
+				{
+					width = std::stoi(value);
+				}
+				else if (key == "height") 
+				{
+					height = std::stoi(value);
+				}
+				else if (key == "day") 
+				{
+					this->day = std::stoi(value);
+				}
+				else if (key == "populationPool") 
+				{
+					this->populationPool = std::stod(value);
+				}
+				else if (key == "employmentPool") 
+				{
+					this->employmentPool = std::stod(value);
+				}
+				else if (key == "population") 
+				{
+					this->population = std::stod(value);
+				}
+				else if (key == "employable") 
+				{
+					this->employable = std::stod(value);
+				}
+				else if (key == "birthRate") 
+				{
+					this->birthRate = std::stod(value);
+				}
+				else if (key == "deathRate") 
+				{
+					this->deathRate = std::stod(value);
+				}
+				else if (key == "residentialTax") 
+				{
+					this->residentialTax = std::stod(value);
+				}
+				else if (key == "commercialTax") 
+				{
+					this->commercialTax = std::stod(value);
+				}
+				else if (key == "industrialTax") 
+				{
+					this->industrialTax = std::stod(value);
+				}
+				else if (key == "funds") 
+				{
+					this->funds = std::stod(value);
+				}
+				else if (key == "earnings") 
+				{
+					this->earnings = std::stod(value);
+				}
 			}
 			else
 			{
-				std::cerr << "Error, no value for key " << key << std::endl;
+				std::cerr << "Error: No value for key " << key << std::endl;
 			}
 		}
 	}
+
+	inputFile.close();
+	this->map.load(cityName + "_map.dat", width, height, tiles);
+	tileChanged();
+
+	return;
+
 }
 
 void City::save(string cityName)
@@ -91,7 +140,8 @@ void City::update(float dt)
 	}
 	++day;
 	this->currentTime = 0.0;
-	if(day % 30 == 0) {
+	if(day % 30 == 0) 
+	{
 		this->funds += this->earnings;
 		this->earnings = 0;
 	}
@@ -127,6 +177,7 @@ void City::update(float dt)
 		tile.update();
 	}
 
+	//Handle goods manufacturing
 	for (int i = 0; i < this->map.tiles.size()-1; ++i) 
 	{
 		Tile &tile = this->map.tiles[this->shuffledTiles[i]];
@@ -153,6 +204,7 @@ void City::update(float dt)
 		}
 	}
 
+	//Handle goods distribution
 	for (int i = 0; i < this->map.tiles.size()-1; ++i) 
 	{
 		Tile &tile = this->map.tiles[this->shuffledTiles[i]];
@@ -217,7 +269,7 @@ void City::update(float dt)
 
 void City::bulldoze(const Tile &tile)
 {
-	for (int pos = 0; pos < this->map.width * this->map.height; ++pos) 
+	for (int pos = 0; pos < (this->map.width * this->map.height); ++pos) 
 	{
 		if (this->map.selected[pos] == 1) 
 		{
@@ -245,8 +297,8 @@ void City::shuffleTiles()
 	{
 		this->shuffledTiles.push_back(0);
 	}
-	iota(shuffledTiles.begin(), shuffledTiles.end(), 0);
-	random_shuffle(shuffledTiles.begin(), shuffledTiles.end());
+	std::iota(shuffledTiles.begin(), shuffledTiles.end(), 0);
+	std::random_shuffle(shuffledTiles.begin(), shuffledTiles.end());
 	
 	return;
 }
@@ -259,27 +311,34 @@ void City::tileChanged()
 	return;
 }
 
-double City::distributePool(double &pool, Tile &tile, double rate)
+double City::distributePool(double &pool, Tile &tile, double rate = 0.0)
 {
-	const static int moveRate = 4;
+	const static int MOVE_RATE = 4;
 
-	unsigned int maxPop = tile.maxPopPerLevel * (tile.tileVariant+1);
+	unsigned int maxPop = tile.maxPopPerLevel * (tile.tileVariant + 1);
 
-	if (pool > 0) {
+	if (pool > 0) 
+	{
 		int moving = maxPop - tile.population;
-		if (moving > moveRate) {
-			moving = moveRate;
+
+		if (moving > MOVE_RATE) 
+		{
+			moving = MOVE_RATE;
 		}
-		if (pool - moving < 0) {
+
+		if (pool - moving < 0) 
+		{
 			moving = pool;
 		}
+
 		pool -= moving;
 		tile.population += moving;
 	}
 
 	tile.population += tile.population * rate;
 
-	if (tile.population > maxPop) {
+	if (tile.population > maxPop) 
+	{
 		pool += tile.population - maxPop;
 		tile.population = maxPop;
 	}

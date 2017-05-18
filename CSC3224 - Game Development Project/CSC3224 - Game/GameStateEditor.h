@@ -30,7 +30,6 @@ public:
 
 private:
 	sf::View gameView, guiView;
-	Map map;
 	City city;
 	ActionState actionState;
 	sf::Vector2i panningAnchor, selectionStart, selectionEnd;
