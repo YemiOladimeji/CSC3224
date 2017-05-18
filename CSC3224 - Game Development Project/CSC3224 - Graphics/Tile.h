@@ -20,7 +20,7 @@ enum class TileType {
 	ROAD
 };
 
-string tileTypetoString(TileType type);
+string tileTypeToString(TileType type);
 
 class Tile 
 {

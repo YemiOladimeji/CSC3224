@@ -31,7 +31,7 @@ GameStateEditor::GameStateEditor(Game* game)
 		std::make_pair("", "")
 	}));
 
-	this->guiSystem.emplace("infoBar", GUI(sf::Vector2f(this->game->window.getSize().x / 5, 16), 2, true, this->game->styles.at("button"),
+	this->guiSystem.emplace("infoBar", GUI(sf::Vector2f((float)(this->game->window.getSize().x / 5), 16), 2, true, this->game->styles.at("button"),
 	{
 		std::make_pair("time", "time"),
 		std::make_pair("funds", "funds"),
@@ -40,12 +40,12 @@ GameStateEditor::GameStateEditor(Game* game)
 		std::make_pair("current tile", "tile")
 	}));
 
-	this->guiSystem.at("infoBar").setPosition(sf::Vector2f(0, this->game->window.getSize().y - 16));
+	this->guiSystem.at("infoBar").setPosition(sf::Vector2f(0, (float)(this->game->window.getSize().y - 16)));
 	this->guiSystem.at("infoBar").show();
 
 	this->zoomLevel = 1.0f;
 
-	sf::Vector2f centre(this->map.width, this->map.height*0.5);
+	sf::Vector2f centre((float)this->map.width, (float)(this->map.height*0.5));
 	centre *= float(this->map.tileSize);
 	gameView.setCenter(centre);
 
@@ -83,7 +83,7 @@ void GameStateEditor::update(const float deltaTime)
 	this->guiSystem.at("infoBar").setEntryText(1, "£" + std::to_string(long(this->city.funds)));
 	this->guiSystem.at("infoBar").setEntryText(2, std::to_string(long(this->city.population)) + "(" + std::to_string(long(this->city.getHomeless())) + ")");
 	this->guiSystem.at("infoBar").setEntryText(3, std::to_string(long(this->city.employable)) + "(" + std::to_string(long(this->city.getUnemployed())) + ")");
-	this->guiSystem.at("infoBar").setEntryText(4, tileTypetoString(currentTile->tileType));
+	this->guiSystem.at("infoBar").setEntryText(4, tileTypeToString(currentTile->tileType));
 
 	this->guiSystem.at("rightClickMenu").highlight(this->guiSystem.at("rightClickMenu").getEntry(this->game->window.mapPixelToCoords(sf::Mouse::getPosition(this->game->window), this->guiView)));
 
@@ -103,11 +103,11 @@ void GameStateEditor::handleInput()
 			game->window.close();
 			break;
 		case sf::Event::Resized:
-			gameView.setSize(event.size.width, event.size.height);
+			gameView.setSize((float)event.size.width, (float)event.size.height);
 			gameView.zoom(zoomLevel);
-			guiView.setSize(event.size.width, event.size.height);
+			guiView.setSize((float)event.size.width, (float)event.size.height);
 
-			this->guiSystem.at("infoBar").setDimensions(sf::Vector2f(event.size.width / this->guiSystem.at("infoBar").entries.size(), 16));
+			this->guiSystem.at("infoBar").setDimensions(sf::Vector2f((float)(event.size.width / this->guiSystem.at("infoBar").entries.size()), 16));
 			this->guiSystem.at("infoBar").setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0, event.size.height - 16), this->guiView));
 			this->guiSystem.at("infoBar").show();
 
@@ -124,9 +124,8 @@ void GameStateEditor::handleInput()
 			}
 			else if (actionState == ActionState::SELECTING) 
 			{
-				sf::Vector2f pos = this->game->window.mapPixelToCoords(sf::Mouse::getPosition(this->game->window), this->gameView);
-				selectionEnd.x = pos.y / (this->map.tileSize) + pos.x / (2 * this->map.tileSize) - this->map.width * 0.5 - 0.5;
-				selectionEnd.y = pos.y / (this->map.tileSize) - pos.x / (2 * this->map.tileSize) + this->map.width * 0.5 + 0.5;
+				selectionEnd.x = gamePos.y / (this->map.tileSize) + gamePos.x / (2 * this->map.tileSize) - this->map.width * 0.5 - 0.5;
+				selectionEnd.y = gamePos.y / (this->map.tileSize) - gamePos.x / (2 * this->map.tileSize) + this->map.width * 0.5 + 0.5;
 
 				this->map.clearSelected();
 

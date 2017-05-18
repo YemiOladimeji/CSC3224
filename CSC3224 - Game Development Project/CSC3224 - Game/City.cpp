@@ -97,7 +97,7 @@ void City::update(float dt)
 	}
 
 	//Handle pool distribution
-	for (int i = 0; i < this->map.tiles.size(); ++i) 
+	for (int i = 0; i < this->map.tiles.size()-1; ++i) 
 	{
 		Tile &tile = this->map.tiles[this->shuffledTiles[i]];
 
@@ -127,7 +127,7 @@ void City::update(float dt)
 		tile.update();
 	}
 
-	for (int i = 0; i < this->map.tiles.size(); ++i) 
+	for (int i = 0; i < this->map.tiles.size()-1; ++i) 
 	{
 		Tile &tile = this->map.tiles[this->shuffledTiles[i]];
 
@@ -153,7 +153,7 @@ void City::update(float dt)
 		}
 	}
 
-	for (int i = 0; i < this->map.tiles.size(); ++i) 
+	for (int i = 0; i < this->map.tiles.size()-1; ++i) 
 	{
 		Tile &tile = this->map.tiles[this->shuffledTiles[i]];
 

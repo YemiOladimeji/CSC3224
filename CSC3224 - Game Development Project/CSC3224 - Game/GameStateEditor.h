@@ -3,6 +3,8 @@
 #define GAME_STATE_EDITOR_H
 
 #include <SFML\Graphics.hpp>
+#include <SFML\System.hpp>
+
 #include "GameState.h"
 #include "Map.h"
 #include "City.h"
