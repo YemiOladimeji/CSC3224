@@ -5,6 +5,10 @@
 #include <SFML\Graphics.hpp>
 #include "GameState.h"
 #include "Map.h"
+#include "City.h"
+#include <GUI.h>
+
+using namespace std;
 
 enum class ActionState 
 {
@@ -25,9 +29,11 @@ public:
 private:
 	sf::View gameView, guiView;
 	Map map;
+	City city;
 	ActionState actionState;
 	sf::Vector2i panningAnchor, selectionStart, selectionEnd;
 	float zoomLevel;
 	Tile* currentTile;
+	std::map<string, GUI> guiSystem;
 };
 #endif // !GAME_STATE_EDITOR_H

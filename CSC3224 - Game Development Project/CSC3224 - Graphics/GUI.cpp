@@ -25,7 +25,8 @@ GUI::GUI(sf::Vector2f dimensions, int padding, bool horizontal, GUIStyle & style
 		sf::Text text;
 		text.setString(entry.first);
 		text.setFont(*style.font);
-		text.setColor(style.textCol);
+		text.setFillColor(style.textCol);
+		text.setOutlineColor(style.textCol);
 		text.setCharacterSize(dimensions.y - style.borderSize - padding);
 
 		this->entries.push_back(GUIEntry(entry.second, shape, text));
@@ -86,7 +87,7 @@ void GUI::setDimensions(sf::Vector2f dimensions)
 	return;
 }
 
-const void GUI::draw(sf::RenderTarget & target, sf::RenderStates states)
+void GUI::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
 	if (!visible) {
 		return;
@@ -140,13 +141,15 @@ void GUI::highlight(const int entry)
 		{
 			entries[i].shape.setFillColor(style.bodyHighlightCol);
 			entries[i].shape.setOutlineColor(style.borderHighlightCol);
-			entries[i].text.setColor(style.textHighlightCol);
+			entries[i].text.setFillColor(style.textHighlightCol);
+			entries[i].text.setOutlineColor(style.textHighlightCol);
 		}
 		else
 		{
 			entries[i].shape.setFillColor(style.bodyCol);
 			entries[i].shape.setOutlineColor(style.borderCol);
-			entries[i].text.setColor(style.textCol);
+			entries[i].text.setFillColor(style.textCol);
+			entries[i].text.setOutlineColor(style.textHighlightCol);
 		}
 	}
 

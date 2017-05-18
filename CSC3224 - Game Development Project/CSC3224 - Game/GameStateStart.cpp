@@ -29,7 +29,7 @@ void GameStateStart::draw(const float deltaTime)
 	for (auto GUI : this->GUISystem) {
 		this->game->window.draw(GUI.second);
 	}
-
+	
 	return;
 }
 

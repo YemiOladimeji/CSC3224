@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class GUI : public sf::Transformable
+class GUI : public sf::Transformable, public sf::Drawable
 {
 public:
 	GUI(); //Default constructor
@@ -27,7 +27,7 @@ public:
 	void setEntryText(int entry, string text);
 	void setDimensions(sf::Vector2f dimensions);
 
-	virtual const void draw(sf::RenderTarget &target, sf::RenderStates states);
+	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 	void show();
 	void hide();

@@ -132,7 +132,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="City.cpp" />
-    <ClCompile Include="dead.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStateEditor.cpp" />
     <ClCompile Include="GameStateStart.cpp" />
