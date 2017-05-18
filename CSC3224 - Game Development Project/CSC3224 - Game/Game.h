@@ -38,7 +38,7 @@ public:
 private:
 	void loadTextures();
 	void loadTiles();
-	void loadStyleSheets();
+	void loadStyles();
 	void loadFonts();
 };
 

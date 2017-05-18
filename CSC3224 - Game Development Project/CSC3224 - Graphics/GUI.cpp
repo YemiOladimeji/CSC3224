@@ -5,7 +5,7 @@ GUI::GUI()
 
 }
 
-GUI::GUI(sf::Vector2f dimensions, int padding, bool horizontal, GUIStyle & style, vector<pair<string, string>> entries)
+GUI::GUI(sf::Vector2f dimensions, int padding, bool horizontal, GUIStyle &style, vector<pair<string, string>> entries)
 {
 	visible = false;
 	this->horizontal = horizontal;

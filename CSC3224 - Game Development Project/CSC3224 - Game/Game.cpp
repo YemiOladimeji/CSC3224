@@ -96,7 +96,7 @@ void Game::loadFonts()
 	return;
 }
 
-void Game::loadStyleSheets() {
+void Game::loadStyles() {
 	this->styles["button"] = GUIStyle(&this->fonts.at("mainFont"), 1, sf::Color(0xc6, 0xc6, 0xc6), sf::Color(0x94, 0x94, 0x94), sf::Color(0x00, 0x00, 0x00), sf::Color(0x61, 0x61, 0x61), sf::Color(0x94, 0x94, 0x94), sf::Color(0x00, 0x00, 0x00));
 	this->styles["text"] = GUIStyle(&this->fonts.at("mainFont"), 0, sf::Color(0x00, 0x00, 0x00, 0x00), sf::Color(0x00, 0x00, 0x00), sf::Color(0xff, 0xff, 0xff), sf::Color(0x00, 0x00, 0x00, 0x00), sf::Color(0x00, 0x00, 0x00), sf::Color(0xff, 0x00, 0x00));
 
@@ -106,6 +106,8 @@ void Game::loadStyleSheets() {
 Game::Game() {
 	this->loadTextures();
 	this->loadTiles();
+	this->loadFonts();
+	this->loadStyles();
 	this->window.create(sf::VideoMode(720, 480), "CSC3224 - CitySim");
 	this->window.setFramerateLimit(60);
 	this->background.setTexture(this->manager.getTexRef("background"));

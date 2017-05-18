@@ -247,7 +247,7 @@ void City::shuffleTiles()
 	}
 	iota(shuffledTiles.begin(), shuffledTiles.end(), 0);
 	random_shuffle(shuffledTiles.begin(), shuffledTiles.end());
-
+	
 	return;
 }
 
