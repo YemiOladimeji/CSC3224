@@ -64,14 +64,14 @@ void Game::gameLoop()
 
 void Game::loadTextures()
 {
-	manager.loadTexture("background", "Images\\background.png");
-	manager.loadTexture("grass", "Images\\grass.png");
-	manager.loadTexture("forest", "Images\\forest.png");
-	manager.loadTexture("water", "Images\\water.png");
-	manager.loadTexture("residential", "Images\\residential.png");
-	manager.loadTexture("commercial", "Images\\commercial.png");
-	manager.loadTexture("industrial", "Images\\industrial.png");
-	manager.loadTexture("road", "Images\\road.png");
+	this->manager.loadTexture("background", "Images\\background.png");
+	this->manager.loadTexture("grass", "Images\\grass.png");
+	this->manager.loadTexture("forest", "Images\\forest.png");
+	this->manager.loadTexture("water", "Images\\water.png");
+	this->manager.loadTexture("residential", "Images\\residential.png");
+	this->manager.loadTexture("commercial", "Images\\commercial.png");
+	this->manager.loadTexture("industrial", "Images\\industrial.png");
+	this->manager.loadTexture("road", "Images\\road.png");
 }
 
 void Game::loadTiles() 
