@@ -3,9 +3,11 @@
 #define TILE_H
 
 #include <SFML\Graphics.hpp>
-#include "AnimationHandler.h"
+
 #include <vector>
 #include <string>
+
+#include "AnimationHandler.h"
 
 using namespace std;
 

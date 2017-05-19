@@ -26,7 +26,8 @@ void Map::load(const string &filename, unsigned int width, unsigned int height, 
 	this->width = width;
 	this->height = height;
 
-	for (int pos = 0; pos < this->width * this->height; ++pos) {
+	for (int pos = 0; pos < this->width * this->height; ++pos) 
+	{
 		this->resources.push_back(255);
 		this->selected.push_back(0);
 

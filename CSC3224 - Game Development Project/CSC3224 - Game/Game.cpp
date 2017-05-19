@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include <Texture.h>
 #include <Animation.h>
+#include <BGM.h>
 #include <SFML\System.hpp>
 
 void Game::pushState(GameState* state) 
@@ -96,6 +97,11 @@ void Game::loadFonts()
 	return;
 }
 
+void Game::loadAudio()
+{
+	music.loadBGM("Audio Files\\bgm.flac");
+}
+
 void Game::loadStyles() {
 	this->styles["button"] = GUIStyle(&this->fonts.at("mainFont"), 1, sf::Color(0xc6, 0xc6, 0xc6), sf::Color(0x94, 0x94, 0x94), sf::Color(0x00, 0x00, 0x00), sf::Color(0x61, 0x61, 0x61), sf::Color(0x94, 0x94, 0x94), sf::Color(0x00, 0x00, 0x00));
 	this->styles["text"] = GUIStyle(&this->fonts.at("mainFont"), 0, sf::Color(0x00, 0x00, 0x00, 0x00), sf::Color(0x00, 0x00, 0x00), sf::Color(0xff, 0xff, 0xff), sf::Color(0x00, 0x00, 0x00, 0x00), sf::Color(0x00, 0x00, 0x00), sf::Color(0xff, 0x00, 0x00));
@@ -108,6 +114,7 @@ Game::Game() {
 	this->loadTiles();
 	this->loadFonts();
 	this->loadStyles();
+	this->loadAudio();
 	this->window.create(sf::VideoMode(720, 480), "CSC3224 - CitySim");
 	this->window.setFramerateLimit(60);
 	this->background.setTexture(this->manager.getTexRef("background"));

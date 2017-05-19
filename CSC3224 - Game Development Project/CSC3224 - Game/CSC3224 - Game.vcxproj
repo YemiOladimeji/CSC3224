@@ -144,6 +144,11 @@
     <ClInclude Include="GameStateEditor.h" />
     <ClInclude Include="GameStateStart.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Audio Files\bgm.flac">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

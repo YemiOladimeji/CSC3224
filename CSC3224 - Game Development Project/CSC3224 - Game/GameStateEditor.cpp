@@ -66,7 +66,7 @@ void GameStateEditor::draw(const float deltaTime)
 	this->game->window.draw(this->game->background);
 
 	this->game->window.setView(this->gameView);
-	this->city.map.draw(this->game->window, deltaTime);
+	city.map.draw(this->game->window, deltaTime);
 
 	this->game->window.setView(this->guiView);
 	for (auto GUI : this->guiSystem) {

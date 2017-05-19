@@ -16,10 +16,11 @@ Tile::Tile(const unsigned int tileSize, const unsigned int height, sf::Texture &
 	this->production = 0;
 	this->storedGoods = 0;
 
-	this->sprite.setOrigin(sf::Vector2f(0.0f, tileSize*(height-1)));
+	this->sprite.setOrigin(sf::Vector2f(0.0f, tileSize * (height - 1)));
 	this->sprite.setTexture(texture);
-	this->handler.frameSize = sf::IntRect(0, 0, tileSize * 2, tileSize*height);
-	for (auto animation : animations) {
+	this->handler.frameSize = sf::IntRect(0, 0, tileSize * 2, tileSize * height);
+	for (auto animation : animations) 
+	{
 		this->handler.update(0.0f);
 	}
 	this->handler.update(0.0f);

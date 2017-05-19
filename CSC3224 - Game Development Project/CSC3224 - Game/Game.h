@@ -8,6 +8,7 @@
 
 #include "Tile.h"
 #include <Texture.h>
+#include <BGM.h>
 #include <GUIStyle.h>
 
 using namespace std;
@@ -24,6 +25,7 @@ public:
 	stack<GameState*> states; //Stack data structure to store GameStates
 	sf::RenderWindow window; //SFML RenderWindow object
 	Texture manager;
+	BGM music;
 	sf::Sprite background;
 
 	map<string, Tile> tiles;
@@ -42,6 +44,7 @@ private:
 	void loadTiles();
 	void loadStyles();
 	void loadFonts();
+	void loadAudio();
 };
 
 #endif // !GAME_H
